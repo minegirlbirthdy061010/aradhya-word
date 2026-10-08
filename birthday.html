@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#f7b8cc">
+
+    <title>Happy Birthday Aradhya ❤️</title>
+
+    <link rel="stylesheet" href="birthday.css">
+</head>
+
+<body>
+
+<div id="birthdayApp">
+
+    <!-- =========================================
+         GLOBAL ATMOSPHERE
+    ========================================== -->
+
+    <div class="global-atmosphere">
+
+        <div class="ambient-glow glow-one"></div>
+        <div class="ambient-glow glow-two"></div>
+        <div class="ambient-glow glow-three"></div>
+
+        <div class="bokeh-field">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div id="floatingParticles"></div>
+        <div id="floatingHearts"></div>
+        <div id="sparkleField"></div>
+
+    </div>
+
+
+    <!-- =========================================
+         OPENING PHASE
+    ========================================== -->
+
+    <section
+        id="openingPhase"
+        class="birthday-phase opening-phase active"
+    >
+
+        <div class="opening-background"></div>
+
+        <div class="opening-vignette"></div>
+
+        <!-- Fairy lights -->
+        <div class="fairy-string fairy-left">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="fairy-string fairy-right">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+
+        <!-- Curved Birthday Jhalar -->
+        <div class="birthday-jhalar-wrap">
+
+            <div class="jhalar-rope rope-main">
+                <span>H</span>
+                <span>A</span>
+                <span>P</span>
+                <span>P</span>
+                <span>Y</span>
+                <span>B</span>
+                <span>I</span>
+                <span>R</span>
+                <span>T</span>
+                <span>H</span>
+                <span>D</span>
+                <span>A</span>
+                <span>Y</span>
+            </div>
+
+            <div class="jhalar-rope rope-name">
+                <span>A</span>
+                <span>R</span>
+                <span>A</span>
+                <span>D</span>
+                <span>H</span>
+                <span>Y</span>
+                <span>A</span>
+            </div>
+
+            <div class="jhalar-rope rope-age">
+                <span>1</span>
+                <span>6</span>
+            </div>
+
+        </div>
+
+
+        <!-- Opening Content -->
+        <div class="opening-content">
+
+            <div class="opening-mini">
+                A little celebration
+            </div>
+
+            <h1 class="opening-title">
+                Made Especially
+                <br>
+                <span>For You</span>
+            </h1>
+
+            <div class="opening-heart" id="openingHeart">
+    <div class="heart-glow"></div>
+    <div class="heart-symbol">♥</div>
+            </div>
+          <div class="opening-heart-hint">
+    Tap the heart ❤️
+          </div>
+
+            <div class="opening-name">
+                Aradhya
+            </div>
+          
+
+            <div class="opening-date">
+                06 · 10
+            </div>
+
+            <p class="opening-subtitle">
+                because someone this special
+                deserves a little world of her own ✨
+            </p>
+
+        </div>
+
+
+        <div class="opening-bottom-hint">
+            A little surprise is waiting...
+            <span>↓</span>
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CANDLE PHASE
+    ========================================== -->
+
+    <section
+        id="candlePhase"
+        class="birthday-phase candle-phase"
+    >
+
+        <div class="candle-blurred-background">
+
+            <div class="candle-bg-orb orb-a"></div>
+            <div class="candle-bg-orb orb-b"></div>
+            <div class="candle-bg-orb orb-c"></div>
+
+            <div class="candle-bg-bokeh">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+
+        <div class="candle-darkness"></div>
+
+        <div class="candle-light-aura"></div>
+
+
+        <div class="candle-content">
+
+            <div class="candle-small-heading">
+                Before the celebration begins...
+            </div>
+
+            <h2 class="candle-title">
+                Make a Wish
+            </h2>
+
+            <p class="candle-instruction">
+                Blow into the microphone
+                <br>
+                or tap the candle
+            </p>
+
+
+            <div
+                id="candleStage"
+                class="candle-stage"
+            >
+
+                <div class="candle-floor-glow"></div>
+
+                <div class="candle-flame-wrap">
+
+                    <div class="flame-outer-glow"></div>
+
+                    <div class="candle-flame">
+                        <div class="flame-inner"></div>
+                    </div>
+
+                </div>
+
+                <div class="single-candle">
+
+                    <div class="candle-wick"></div>
+
+                    <div class="candle-body">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="candle-base"></div>
+
+                </div>
+
+                <button
+                    id="candleTap"
+                    class="candle-tap-area"
+                    aria-label="Blow out candle"
+                ></button>
+
+            </div>
+
+
+            <div
+                id="micStatus"
+                class="mic-status"
+            >
+                🎙️ Listening for your wish...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CAKE PHASE
+    ========================================== -->
+
+    <section
+        id="cakePhase"
+        class="birthday-phase cake-phase"
+    >
+
+        <div class="cake-background"></div>
+
+        <div class="cake-dark-overlay"></div>
+
+        <div class="cake-night-glow"></div>
+
+
+        <!-- Same Birthday Jhalar -->
+
+<div class="birthday-jhalar-wrap cake-birthday-jhalar">
+
+    <div class="jhalar-rope rope-main">
+        <span>H</span>
+        <span>A</span>
+        <span>P</span>
+        <span>P</span>
+        <span>Y</span>
+        <span>B</span>
+        <span>I</span>
+        <span>R</span>
+        <span>T</span>
+        <span>H</span>
+        <span>D</span>
+        <span>A</span>
+        <span>Y</span>
+    </div>
+
+    <div class="jhalar-rope rope-name">
+        <span>A</span>
+        <span>R</span>
+        <span>A</span>
+        <span>D</span>
+        <span>H</span>
+        <span>Y</span>
+        <span>A</span>
+    </div>
+
+    <div class="jhalar-rope rope-age">
+        <span>1</span>
+        <span>6</span>
+    </div>
+
+</div>
+
+
+        <div class="cake-scene-content">
+
+            <div class="cake-heading">
+
+                <div class="cake-heading-small">
+                    And now...
+                </div>
+
+                <h2>
+                    Your Birthday Cake
+                </h2>
+
+            </div>
+
+
+            <!-- Visible spotlight -->
+            <div class="cake-spotlight">
+
+                <div class="spotlight-beam"></div>
+
+                <div class="spotlight-core"></div>
+
+            </div>
+
+
+            <!-- Cake stage -->
+            <div
+                id="cakeStage"
+                class="cake-stage"
+            >
+
+                <div class="cake-floor-shadow"></div>
+
+                <div class="cake-glow"></div>
+
+
+                <!-- Cake -->
+                <div class="birthday-cake">
+
+
+                    <!-- TOP TIER -->
+                    <div class="cake-tier cake-tier-top">
+
+                        <div class="tier-surface"></div>
+
+                        <div class="tier-frosting top-frosting">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="cream-drip">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                    </div>
+
+
+                    <!-- MIDDLE TIER -->
+                    <div class="cake-tier cake-tier-middle">
+
+                        <div class="tier-surface"></div>
+
+                        <div class="tier-frosting middle-frosting">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="cream-drip">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="gold-decoration">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- BOTTOM TIER -->
+                    <div class="cake-tier cake-tier-bottom">
+
+                        <div class="tier-surface"></div>
+
+                        <div class="tier-frosting bottom-frosting">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="cream-drip">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="gold-decoration bottom-gold">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Roses -->
+                    <div class="cake-roses">
+
+                        <div class="cream-rose rose-1">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="cream-rose rose-2">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="cream-rose rose-3">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="cream-rose rose-4">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Front message -->
+                    <div class="cake-front-message">
+                        Happy birthday my future wifeyyyy ❤️
+                    </div>
+
+
+                    <!-- Number candles 1 + 6 -->
+                    <div class="number-candles">
+
+                        <div class="number-candle number-one">
+
+                            <div class="number-flame">
+                                <span></span>
+                            </div>
+
+                            <div class="number-wick"></div>
+
+                            <div class="number-shape">
+                                1
+                            </div>
+
+                        </div>
+
+
+                        <div class="number-candle number-six">
+
+                            <div class="number-flame">
+                                <span></span>
+                            </div>
+
+                            <div class="number-wick"></div>
+
+                            <div class="number-shape">
+                                6
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Decorative flowers -->
+                    <div class="cake-decoration decor-a"></div>
+                    <div class="cake-decoration decor-b"></div>
+                    <div class="cake-decoration decor-c"></div>
+
+
+                    <!-- Cake cut -->
+                    <div
+                        id="cakeCutGlow"
+                        class="cake-cut-glow"
+                    ></div>
+
+                    <div
+                        id="creamStretch"
+                        class="cream-stretch"
+                    ></div>
+
+                </div>
+
+
+                <!-- Knife -->
+                <div
+                    id="cakeKnife"
+                    class="cake-knife"
+                    aria-label="Cake knife"
+                >
+
+                    <div class="knife-handle"></div>
+                    <div class="knife-blade"></div>
+
+                </div>
+
+
+                <div class="cake-cut-instruction">
+                    Swipe the knife through the cake ✨
+                </div>
+
+                <div
+                    id="cakeCutHint"
+                    class="cake-cut-hint"
+                >
+                    ↓
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+        <!-- =========================================
+         FIREWORKS PHASE
+    ========================================== -->
+
+    <section
+        id="fireworksPhase"
+        class="birthday-phase fireworks-phase"
+    >
+
+        <div class="fireworks-sky">
+
+            <div class="sky-gradient"></div>
+
+            <div class="sky-stars">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="sky-moon-glow"></div>
+
+            <div class="fireworks-horizon"></div>
+
+        </div>
+
+
+        <!-- Main fireworks canvas -->
+        <canvas id="fireworksCanvas"></canvas>
+
+
+        <div class="fireworks-atmosphere">
+
+            <div class="firework-haze haze-one"></div>
+            <div class="firework-haze haze-two"></div>
+            <div class="firework-haze haze-three"></div>
+
+        </div>
+
+
+        <div class="fireworks-ground"></div>
+
+
+        <!-- Final particle-revealed message -->
+        <div
+            id="fireworksBirthdayMessage"
+            class="fireworks-birthday-message"
+            aria-hidden="true"
+        >
+
+            <div class="fireworks-message-small">
+                A little wish for you...
+            </div>
+
+            <div
+                id="fireworksHappy"
+                class="fireworks-message-main"
+            >
+                HAPPY BIRTHDAY
+            </div>
+
+            <div
+                id="fireworksAradhya"
+                class="fireworks-message-name"
+            >
+                ARADHYA
+            </div>
+
+        </div>
+
+
+        <div
+            id="fireworksFinaleFlash"
+            class="fireworks-finale-flash"
+        ></div>
+
+
+        <div
+            id="fireworksEndIndicator"
+            class="fireworks-end-indicator"
+        >
+            ✨
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         NOTES PHASE
+    ========================================== -->
+
+    <section
+        id="notesPhase"
+        class="birthday-phase notes-phase"
+    >
+
+        <div class="notes-background">
+
+            <div class="notes-orb orb-one"></div>
+            <div class="notes-orb orb-two"></div>
+            <div class="notes-orb orb-three"></div>
+
+            <div id="notesParticles"></div>
+
+        </div>
+
+
+        <div class="notes-wrapper">
+
+
+            <div class="notes-heading">
+
+                <div class="notes-heading-small">
+                    A few things I wanted to tell you...
+                </div>
+
+                <h2>
+                    Just For You ❤️
+                </h2>
+
+            </div>
+
+
+            <div
+                id="birthdayNote"
+                class="birthday-note"
+            >
+
+                <div class="note-paper">
+
+                    <div class="note-paper-texture"></div>
+
+                    <div class="note-tape tape-left"></div>
+                    <div class="note-tape tape-right"></div>
+
+
+                    <div
+                        id="noteNumber"
+                        class="note-number"
+                    >
+                        01
+                    </div>
+
+
+                    <div class="note-divider"></div>
+
+
+                    <h3 id="noteTitle">
+                        A Little Thing
+                    </h3>
+
+
+                    <div
+                        id="noteContent"
+                        class="note-content"
+                    >
+                        <p>
+                            Some memories are small,
+                            but somehow they become
+                            the biggest part of our story.
+                        </p>
+                    </div>
+
+
+                    <div
+                        id="noteSignature"
+                        class="note-signature"
+                    >
+                        — Saksham ❤️
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Navigation -->
+            <div class="notes-navigation">
+
+                <button
+                    id="previousNote"
+                    class="note-nav-button"
+                    type="button"
+                >
+                    ←
+                </button>
+
+                <div
+                    id="noteCounter"
+                    class="note-counter"
+                >
+                    01 / 06
+                </div>
+
+                <button
+                    id="nextNote"
+                    class="note-nav-button"
+                    type="button"
+                >
+                    →
+                </button>
+
+            </div>
+
+
+            <div
+                id="notesComplete"
+                class="notes-complete"
+            >
+
+                <div class="notes-complete-heart">
+                    ♥
+                </div>
+
+                <p>
+                    That's all for this little chapter...
+                </p>
+
+                <button
+                    id="continueToPart5"
+                    type="button"
+                >
+                    Continue Our Journey
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         GLOBAL TRANSITION
+    ========================================== -->
+
+    <div
+        id="birthdayTransition"
+        class="birthday-transition"
+    >
+        <div class="transition-heart">♥</div>
+    </div>
+
+
+    <!-- Touch spark -->
+    <div
+        id="touchSparkContainer"
+        class="touch-spark-container"
+    ></div>
+
+
+    <!-- Audio hint -->
+    <div
+        id="audioUnlockHint"
+        class="audio-unlock-hint"
+    >
+        Tap anywhere for the music ✨
+    </div>
+
+
+</div>
+
+
+<script src="birthday.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,2306 @@
+/* =========================================================
+   ARADHYA'S WORLD ❤️
+   PART 2 — BALLOON MEMORY GAME
+   BALLOON.CSS
+   ========================================================= */
+
+
+/* =========================================================
+   1. RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: "Poppins", "Segoe UI", sans-serif;
+    color: #5a4057;
+    background: #e9d8ef;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+
+/* =========================================================
+   2. DREAMY SKY BACKGROUND
+   ========================================================= */
+
+#skyBackground {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 8%,
+            rgba(255, 226, 214, 0.75),
+            transparent 32%
+        ),
+        linear-gradient(
+            180deg,
+            #f8c6d3 0%,
+            #f6d0d1 17%,
+            #d9c5e8 48%,
+            #c9d7ef 75%,
+            #b9d9ee 100%
+        );
+}
+
+
+/* Soft atmospheric glows */
+
+.sky-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(25px);
+    opacity: 0.45;
+}
+
+.sky-glow-one {
+    width: 240px;
+    height: 240px;
+    top: -80px;
+    left: -50px;
+    background: rgba(255, 205, 220, 0.65);
+}
+
+.sky-glow-two {
+    width: 280px;
+    height: 280px;
+    right: -90px;
+    bottom: -80px;
+    background: rgba(190, 220, 255, 0.65);
+}
+
+
+/* =========================================================
+   3. CLOUDS
+   ========================================================= */
+
+#cloudLayer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.cloud {
+    position: absolute;
+    width: 170px;
+    height: 42px;
+    border-radius: 50px;
+
+    background: rgba(255, 255, 255, 0.48);
+
+    filter: blur(1px);
+
+    box-shadow:
+        0 8px 25px rgba(255, 255, 255, 0.22);
+
+    animation:
+        cloudMove linear infinite;
+}
+
+.cloud span {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.48);
+}
+
+.cloud span:nth-child(1) {
+    width: 60px;
+    height: 60px;
+    left: 20px;
+    bottom: 5px;
+}
+
+.cloud span:nth-child(2) {
+    width: 72px;
+    height: 72px;
+    left: 65px;
+    bottom: 5px;
+}
+
+.cloud span:nth-child(3) {
+    width: 50px;
+    height: 50px;
+    right: 15px;
+    bottom: 3px;
+}
+
+.cloud-one {
+    top: 12%;
+    left: -220px;
+    transform: scale(0.9);
+    animation-duration: 45s;
+}
+
+.cloud-two {
+    top: 30%;
+    left: -260px;
+    transform: scale(0.65);
+    opacity: 0.55;
+    animation-duration: 58s;
+    animation-delay: -20s;
+}
+
+.cloud-three {
+    top: 53%;
+    left: -250px;
+    transform: scale(1.15);
+    opacity: 0.38;
+    animation-duration: 68s;
+    animation-delay: -35s;
+}
+
+.cloud-four {
+    top: 72%;
+    left: -250px;
+    transform: scale(0.7);
+    opacity: 0.32;
+    animation-duration: 54s;
+    animation-delay: -10s;
+}
+
+@keyframes cloudMove {
+    from {
+        left: -260px;
+    }
+
+    to {
+        left: calc(100% + 280px);
+    }
+}
+
+
+/* =========================================================
+   4. SPARKLES
+   ========================================================= */
+
+#sparkleLayer,
+#floatingHeartLayer,
+#petalLayer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.sky-sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 0.9),
+        0 0 18px rgba(255, 220, 240, 0.7);
+
+    animation:
+        sparklePulse ease-in-out infinite;
+}
+
+@keyframes sparklePulse {
+    0%,
+    100% {
+        opacity: 0.15;
+        transform: scale(0.5);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+}
+
+
+/* =========================================================
+   5. FLOATING HEARTS
+   ========================================================= */
+
+.sky-heart {
+    position: absolute;
+
+    color: rgba(255, 111, 155, 0.42);
+
+    font-size: 14px;
+
+    filter:
+        drop-shadow(
+            0 0 8px rgba(255, 140, 180, 0.4)
+        );
+
+    animation:
+        heartFloat linear forwards;
+}
+
+@keyframes heartFloat {
+    from {
+        transform:
+            translate3d(0, 30px, 0)
+            rotate(0deg)
+            scale(0.7);
+
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 0.8;
+    }
+
+    50% {
+        transform:
+            translate3d(18px, -50vh, 0)
+            rotate(8deg)
+            scale(1);
+    }
+
+    88% {
+        opacity: 0.5;
+    }
+
+    to {
+        transform:
+            translate3d(-15px, -115vh, 0)
+            rotate(-8deg)
+            scale(0.7);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   6. PETALS
+   ========================================================= */
+
+.sky-petal {
+    position: absolute;
+
+    width: 9px;
+    height: 14px;
+
+    border-radius: 80% 20% 80% 20%;
+
+    background: rgba(255, 164, 190, 0.55);
+
+    filter:
+        blur(0.2px)
+        drop-shadow(
+            0 0 5px rgba(255, 180, 205, 0.35)
+        );
+
+    animation:
+        petalFall linear forwards;
+}
+
+@keyframes petalFall {
+    from {
+        transform:
+            translate3d(0, -30px, 0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    50% {
+        transform:
+            translate3d(35px, 50vh, 0)
+            rotate(180deg);
+    }
+
+    to {
+        transform:
+            translate3d(-20px, 110vh, 0)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   7. MAIN GAME
+   ========================================================= */
+
+#game {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+}
+
+
+/* =========================================================
+   8. GAME SCREENS
+   ========================================================= */
+
+.game-screen {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+.game-screen.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   9. INTRO SCREEN
+   ========================================================= */
+
+.intro-content {
+    width: min(90vw, 430px);
+
+    text-align: center;
+
+    padding: 28px 22px;
+
+    animation:
+        introAppear 1.2s ease both;
+}
+
+@keyframes introAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.intro-small {
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: rgba(91, 65, 91, 0.68);
+
+    margin-bottom: 12px;
+}
+
+.intro-content h1 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(2rem, 9vw, 3.1rem);
+
+    line-height: 1.02;
+
+    font-weight: 500;
+
+    color: #69445f;
+
+    text-shadow:
+        0 3px 18px rgba(255, 255, 255, 0.6);
+}
+
+.intro-heart {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 18px auto;
+
+    border-radius: 50%;
+
+    color: #fff;
+    font-size: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 134, 170, 0.95),
+            rgba(239, 102, 145, 0.9)
+        );
+
+    box-shadow:
+        0 10px 30px rgba(226, 102, 147, 0.25),
+        inset 0 1px 10px rgba(255, 255, 255, 0.65);
+
+    animation:
+        softHeartPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes softHeartPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+.intro-content p {
+    max-width: 350px;
+    margin: 0 auto;
+
+    font-size: 0.86rem;
+    line-height: 1.7;
+
+    color: rgba(79, 61, 79, 0.8);
+}
+
+.intro-content strong {
+    color: #d45e88;
+}
+
+.collect-instruction {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+    padding: 11px 17px;
+
+    border-radius: 30px;
+
+    color: #754c66;
+
+    font-size: 0.76rem;
+    font-weight: 600;
+
+    background: rgba(255, 255, 255, 0.4);
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+
+    box-shadow:
+        0 8px 25px rgba(105, 76, 120, 0.08),
+        inset 0 1px 10px rgba(255, 255, 255, 0.55);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    animation:
+        instructionGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes instructionGlow {
+    0%,
+    100% {
+        box-shadow:
+            0 8px 25px rgba(105, 76, 120, 0.08),
+            inset 0 1px 10px rgba(255, 255, 255, 0.55);
+    }
+
+    50% {
+        box-shadow:
+            0 8px 30px rgba(255, 120, 170, 0.2),
+            0 0 25px rgba(255, 175, 205, 0.2),
+            inset 0 1px 10px rgba(255, 255, 255, 0.65);
+    }
+}
+
+.instruction-glow {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #f47da4;
+
+    box-shadow:
+        0 0 8px #f47da4;
+}
+
+.intro-subtext {
+    margin-top: 12px;
+
+    font-size: 0.68rem;
+
+    color: rgba(91, 65, 91, 0.58);
+}
+
+
+/* =========================================================
+   10. GLASS BUTTON
+   ========================================================= */
+
+.glass-button {
+    position: relative;
+
+    margin-top: 22px;
+
+    padding: 12px 23px;
+
+    border: 1px solid rgba(255, 255, 255, 0.72);
+
+    border-radius: 30px;
+
+    color: #704b63;
+
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.58),
+            rgba(255, 235, 245, 0.38)
+        );
+
+    box-shadow:
+        0 10px 28px rgba(107, 76, 115, 0.12),
+        inset 0 1px 12px rgba(255, 255, 255, 0.72);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.glass-button::before {
+    content: "";
+
+    position: absolute;
+    top: 1px;
+    left: 12%;
+
+    width: 76%;
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.glass-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 13px 32px rgba(107, 76, 115, 0.16),
+        0 0 22px rgba(255, 155, 195, 0.2),
+        inset 0 1px 12px rgba(255, 255, 255, 0.75);
+}
+
+.glass-button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================================================
+   11. BALLOON GAME HUD
+   ========================================================= */
+
+#gameHUD {
+    position: absolute;
+
+    top: max(18px, env(safe-area-inset-top));
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 100;
+
+    width: min(92vw, 440px);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 9px 13px;
+
+    border-radius: 22px;
+
+    background: rgba(255, 255, 255, 0.28);
+
+    border: 1px solid rgba(255, 255, 255, 0.48);
+
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+
+    box-shadow:
+        0 8px 25px rgba(83, 70, 105, 0.08),
+        inset 0 1px 8px rgba(255, 255, 255, 0.5);
+}
+
+.hud-title {
+    font-size: 0.68rem;
+    font-weight: 600;
+
+    color: rgba(82, 62, 84, 0.72);
+}
+
+#progressMini {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    padding: 5px 9px;
+
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.4);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    color: #bd547b;
+}
+
+.hud-divider {
+    opacity: 0.4;
+}
+
+.hud-label {
+    margin-left: 2px;
+
+    font-size: 0.56rem;
+    font-weight: 500;
+
+    opacity: 0.65;
+}
+
+
+/* =========================================================
+   12. BALLOON AREA
+   ========================================================= */
+
+#balloonArea {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: auto;
+}
+
+#normalBalloonLayer,
+#specialBalloonLayer,
+#balloonEffectLayer {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   13. NORMAL BALLOONS
+   ========================================================= */
+
+.normal-balloon {
+    position: absolute;
+
+    bottom: -130px;
+
+    width: var(--balloon-size, 54px);
+    height: calc(var(--balloon-size, 54px) * 1.18);
+
+    border-radius: 52% 48% 48% 52%;
+
+    background:
+        radial-gradient(
+            circle at 32% 24%,
+            rgba(255, 255, 255, 0.75) 0 5%,
+            rgba(255, 255, 255, 0.15) 9%,
+            transparent 19%
+        ),
+        linear-gradient(
+            145deg,
+            var(--balloon-light, #f8b5cb),
+            var(--balloon-dark, #db7ea5)
+        );
+
+    box-shadow:
+        0 8px 20px rgba(150, 91, 125, 0.12),
+        inset -8px -10px 18px rgba(115, 55, 95, 0.08),
+        inset 7px 8px 15px rgba(255, 255, 255, 0.25);
+
+    opacity: 0.86;
+
+    pointer-events: auto;
+
+    cursor: pointer;
+
+    will-change: transform;
+
+    transform:
+        translate3d(0, 0, 0)
+        rotate(var(--rotation, 0deg));
+
+    animation:
+        normalBalloonRise
+        var(--rise-duration, 8s)
+        linear
+        forwards;
+}
+
+.normal-balloon::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -5px;
+    left: 50%;
+
+    transform: translateX(-50%) rotate(45deg);
+
+    width: 9px;
+    height: 9px;
+
+    background: var(--balloon-dark, #db7ea5);
+
+    box-shadow:
+        2px 2px 5px rgba(80, 50, 80, 0.08);
+}
+
+.normal-balloon-string {
+    position: absolute;
+
+    top: 100%;
+    left: 50%;
+
+    width: 1px;
+    height: 90px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(90, 70, 100, 0.3),
+            rgba(255, 255, 255, 0)
+        );
+
+    transform-origin: top;
+}
+
+@keyframes normalBalloonRise {
+    0% {
+        transform:
+            translate3d(
+                var(--x-start, 0px),
+                0,
+                0
+            )
+            rotate(var(--rotation, 0deg));
+    }
+
+    25% {
+        transform:
+            translate3d(
+                calc(var(--x-start, 0px) + var(--drift, 18px)),
+                -25vh,
+                0
+            )
+            rotate(calc(var(--rotation, 0deg) + 4deg));
+    }
+
+    50% {
+        transform:
+            translate3d(
+                calc(var(--x-start, 0px) - var(--drift, 18px)),
+                -52vh,
+                0
+            )
+            rotate(calc(var(--rotation, 0deg) - 4deg));
+    }
+
+    75% {
+        transform:
+            translate3d(
+                calc(var(--x-start, 0px) + var(--drift, 18px)),
+                -78vh,
+                0
+            )
+            rotate(calc(var(--rotation, 0deg) + 3deg));
+    }
+
+    100% {
+        transform:
+            translate3d(
+                calc(var(--x-start, 0px) - var(--drift, 18px)),
+                -125vh,
+                0
+            )
+            rotate(calc(var(--rotation, 0deg) - 2deg));
+    }
+}
+
+
+/* =========================================================
+   14. SPECIAL HEART BALLOONS
+   ========================================================= */
+
+.special-balloon {
+    position: absolute;
+
+    bottom: -150px;
+
+    width: 67px;
+    height: 67px;
+
+    pointer-events: auto;
+
+    cursor: pointer;
+
+    z-index: 30;
+
+    will-change: transform;
+
+    animation:
+        specialBalloonRise
+        var(--special-duration, 10s)
+        linear
+        forwards;
+}
+
+.special-balloon-shape {
+    position: absolute;
+
+    inset: 4px;
+
+    transform: rotate(-45deg);
+
+    border-radius:
+        50% 50% 50% 8%;
+
+    background:
+        radial-gradient(
+            circle at 30% 22%,
+            rgba(255, 255, 255, 0.95) 0 5%,
+            rgba(255, 255, 255, 0.25) 12%,
+            transparent 21%
+        ),
+        linear-gradient(
+            145deg,
+            #ffb5d0,
+            #f06e9e 58%,
+            #dc4e87
+        );
+
+    box-shadow:
+        0 0 14px rgba(255, 91, 151, 0.7),
+        0 0 35px rgba(255, 128, 177, 0.5),
+        0 12px 28px rgba(171, 71, 122, 0.2),
+        inset 8px 8px 15px rgba(255, 255, 255, 0.25),
+        inset -9px -11px 18px rgba(130, 35, 80, 0.12);
+
+    animation:
+        specialGlow 1.7s ease-in-out infinite;
+}
+
+.special-balloon-shape::before,
+.special-balloon-shape::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    background: inherit;
+}
+
+.special-balloon-shape::before {
+    top: -50%;
+    left: 0;
+}
+
+.special-balloon-shape::after {
+    top: 0;
+    left: 50%;
+}
+
+.special-balloon-knot {
+    position: absolute;
+
+    bottom: -1px;
+    left: 50%;
+
+    width: 9px;
+    height: 9px;
+
+    transform:
+        translateX(-50%)
+        rotate(45deg);
+
+    background: #d84c82;
+
+    z-index: 5;
+}
+
+.special-balloon-string {
+    position: absolute;
+
+    top: 100%;
+    left: 50%;
+
+    width: 1px;
+    height: 105px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(166, 63, 108, 0.5),
+            rgba(255, 255, 255, 0)
+        );
+
+    transform-origin: top;
+
+    z-index: -1;
+}
+
+.special-balloon::after {
+    content: "♥";
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: rgba(255, 255, 255, 0.95);
+
+    font-size: 24px;
+
+    z-index: 20;
+
+    text-shadow:
+        0 2px 8px rgba(159, 43, 91, 0.18);
+
+    pointer-events: none;
+}
+
+@keyframes specialGlow {
+    0%,
+    100% {
+        filter: brightness(1);
+        box-shadow:
+            0 0 14px rgba(255, 91, 151, 0.7),
+            0 0 35px rgba(255, 128, 177, 0.5),
+            0 12px 28px rgba(171, 71, 122, 0.2);
+    }
+
+    50% {
+        filter: brightness(1.1);
+        box-shadow:
+            0 0 20px rgba(255, 91, 151, 0.9),
+            0 0 48px rgba(255, 128, 177, 0.72),
+            0 12px 35px rgba(171, 71, 122, 0.25);
+    }
+}
+
+@keyframes specialBalloonRise {
+    0% {
+        transform:
+            translate3d(
+                var(--x-start, 0px),
+                0,
+                0
+            )
+            rotate(-4deg);
+    }
+
+    25% {
+        transform:
+            translate3d(
+                calc(var(--x-start, 0px) + 30px),
+                -25vh,
+                0
+            )
+            rotate(5deg);
+    }
+
+    50% {
+        transform:
+            translate3d(
+                calc(var(--x-start, 0px) - 25px),
+                -55vh,
+                0
+            )
+            rotate(-5deg);
+    }
+
+    75% {
+        transform:
+            translate3d(
+                calc(var(--x-start, 0px) + 25px),
+                -82vh,
+                0
+            )
+            rotate(4deg);
+    }
+
+    100% {
+        transform:
+            translate3d(
+                calc(var(--x-start, 0px) - 15px),
+                -130vh,
+                0
+            )
+            rotate(-3deg);
+    }
+}
+
+
+/* =========================================================
+   15. GAME HINT
+   ========================================================= */
+
+#gameHint {
+    position: absolute;
+
+    left: 50%;
+    bottom: max(18px, env(safe-area-inset-bottom));
+
+    transform: translateX(-50%);
+
+    z-index: 90;
+
+    padding: 8px 14px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.3);
+
+    border: 1px solid rgba(255, 255, 255, 0.45);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    color: rgba(83, 61, 84, 0.68);
+
+    font-size: 0.65rem;
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 6px 20px rgba(83, 61, 100, 0.07);
+}
+
+
+/* =========================================================
+   16. GLASS CARDS
+   ========================================================= */
+
+.glass-card {
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.68),
+            rgba(255, 244, 250, 0.42)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.76);
+
+    box-shadow:
+        0 25px 70px rgba(93, 65, 105, 0.16),
+        0 8px 25px rgba(93, 65, 105, 0.08),
+        inset 0 1px 15px rgba(255, 255, 255, 0.8);
+
+    backdrop-filter: blur(22px) saturate(120%);
+    -webkit-backdrop-filter: blur(22px) saturate(120%);
+
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 8%;
+
+    width: 84%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.95),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   17. NOTE CARD
+   ========================================================= */
+
+.note-card {
+    width: min(88vw, 370px);
+
+    padding: 31px 24px;
+
+    border-radius: 28px;
+
+    text-align: center;
+
+    animation:
+        noteAppear 0.65s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes noteAppear {
+    from {
+        opacity: 0;
+        transform:
+            translateY(25px)
+            scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.note-decoration {
+    position: absolute;
+
+    color: rgba(220, 89, 136, 0.35);
+
+    font-size: 24px;
+}
+
+.top-decoration {
+    top: 13px;
+    left: 18px;
+}
+
+.bottom-decoration {
+    right: 18px;
+    bottom: 10px;
+}
+
+.note-label {
+    font-size: 0.59rem;
+
+    letter-spacing: 2px;
+
+    color: rgba(124, 76, 103, 0.55);
+
+    margin-bottom: 13px;
+}
+
+.note-balloon-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff9fbe,
+            #e76396
+        );
+
+    box-shadow:
+        0 8px 25px rgba(225, 92, 140, 0.25),
+        inset 0 2px 9px rgba(255, 255, 255, 0.5);
+}
+
+.note-card h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 1.55rem;
+
+    font-weight: 500;
+
+    color: #70465f;
+
+    line-height: 1.2;
+}
+
+.note-card p {
+    margin-top: 15px;
+
+    font-size: 0.84rem;
+
+    line-height: 1.75;
+
+    color: rgba(79, 59, 79, 0.8);
+}
+
+.note-line {
+    width: 70px;
+    height: 1px;
+
+    margin: 19px auto 12px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(208, 101, 143, 0.5),
+            transparent
+        );
+}
+
+.note-counter {
+    font-size: 0.63rem;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    color: rgba(113, 71, 97, 0.55);
+}
+
+.glow-button {
+    box-shadow:
+        0 10px 28px rgba(214, 89, 140, 0.14),
+        0 0 18px rgba(255, 150, 190, 0.16),
+        inset 0 1px 12px rgba(255, 255, 255, 0.72);
+}
+
+
+/* =========================================================
+   18. PROGRESS CARD
+   ========================================================= */
+
+.progress-card {
+    width: min(88vw, 360px);
+
+    padding: 30px 23px;
+
+    border-radius: 27px;
+
+    text-align: center;
+
+    animation:
+        progressAppear 0.65s ease both;
+}
+
+@keyframes progressAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.93);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.progress-icon {
+    font-size: 35px;
+
+    animation:
+        softHeartPulse 2s ease-in-out infinite;
+}
+
+.progress-label {
+    margin-top: 9px;
+
+    font-size: 0.58rem;
+
+    letter-spacing: 2px;
+
+    color: rgba(115, 72, 99, 0.55);
+}
+
+.progress-card h2 {
+    margin-top: 9px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 1.38rem;
+
+    font-weight: 500;
+
+    color: #70465f;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+
+    margin-top: 19px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 2px 5px rgba(94, 65, 95, 0.07);
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ef91b3,
+            #e95c91
+        );
+
+    box-shadow:
+        0 0 12px rgba(232, 92, 145, 0.45);
+
+    transition:
+        width 0.8s cubic-bezier(.2,.8,.2,1);
+}
+
+.progress-count {
+    margin-top: 8px;
+
+    font-size: 0.7rem;
+
+    font-weight: 600;
+
+    color: #c45c83;
+}
+
+.progress-card p {
+    margin-top: 12px;
+
+    font-size: 0.76rem;
+
+    line-height: 1.55;
+
+    color: rgba(79, 59, 79, 0.72);
+}
+
+
+/* =========================================================
+   19. GOLDEN BALLOON SCREEN
+   ========================================================= */
+
+.golden-intro {
+    position: absolute;
+
+    top: 12%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 90%;
+
+    text-align: center;
+
+    animation:
+        goldenIntro 1s ease both;
+}
+
+@keyframes goldenIntro {
+    from {
+        opacity: 0;
+        transform:
+            translate(-50%, 15px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translate(-50%, 0);
+    }
+}
+
+.golden-small {
+    font-size: 0.65rem;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: rgba(105, 72, 92, 0.58);
+}
+
+.golden-intro h2 {
+    margin-top: 8px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 1.85rem;
+
+    font-weight: 500;
+
+    color: #795064;
+}
+
+.golden-description {
+    margin-top: 8px;
+
+    font-size: 0.74rem;
+
+    color: rgba(82, 62, 83, 0.65);
+}
+
+#goldenBalloonArea {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+#goldenBalloon {
+    position: absolute;
+
+    left: 50%;
+    bottom: -170px;
+
+    width: 100px;
+    height: 118px;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    filter:
+        drop-shadow(
+            0 15px 22px rgba(157, 104, 50, 0.18)
+        );
+
+    transition:
+        transform 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+#goldenBalloon.reached-center {
+    transform:
+        translateX(-50%)
+        translateY(-50vh);
+}
+
+.golden-balloon-shine {
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 48% 52% 50% 50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 22%,
+            rgba(255, 255, 255, 0.95) 0 7%,
+            rgba(255, 255, 255, 0.3) 13%,
+            transparent 25%
+        ),
+        linear-gradient(
+            145deg,
+            #fff3a5,
+            #f8cf54 48%,
+            #e9a52f 100%
+        );
+
+    border: 1px solid rgba(255, 239, 160, 0.9);
+
+    box-shadow:
+        0 0 18px rgba(255, 205, 71, 0.75),
+        0 0 48px rgba(255, 193, 53, 0.42),
+        inset 8px 8px 18px rgba(255, 255, 255, 0.3),
+        inset -10px -12px 18px rgba(156, 93, 22, 0.12);
+
+    animation:
+        goldenGlow 1.8s ease-in-out infinite;
+}
+
+@keyframes goldenGlow {
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.13);
+    }
+}
+
+.golden-balloon-heart {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: rgba(255, 255, 255, 0.9);
+
+    font-size: 30px;
+
+    text-shadow:
+        0 2px 8px rgba(150, 90, 25, 0.18);
+
+    z-index: 5;
+}
+
+.golden-balloon-knot {
+    position: absolute;
+
+    left: 50%;
+    bottom: -5px;
+
+    width: 12px;
+    height: 12px;
+
+    transform:
+        translateX(-50%)
+        rotate(45deg);
+
+    background: #dc9925;
+
+    z-index: 5;
+}
+
+.golden-balloon-string {
+    position: absolute;
+
+    left: 50%;
+    top: 100%;
+
+    width: 1px;
+    height: 130px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(167, 112, 37, 0.45),
+            transparent
+        );
+}
+
+#goldenInstruction {
+    position: absolute;
+
+    left: 50%;
+    bottom: 13%;
+
+    transform:
+        translateX(-50%)
+        translateY(10px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    padding: 11px 21px;
+
+    border-radius: 30px;
+
+    color: #8b602b;
+
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    background: rgba(255, 249, 220, 0.58);
+
+    border: 1px solid rgba(255, 238, 166, 0.75);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 10px 30px rgba(142, 101, 43, 0.12),
+        0 0 24px rgba(255, 210, 82, 0.22);
+
+    transition:
+        opacity 0.7s ease,
+        visibility 0.7s ease,
+        transform 0.7s ease;
+}
+
+#goldenInstruction.show {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+    animation:
+        goldenInstructionPulse 2s ease-in-out infinite;
+}
+
+.golden-instruction-glow {
+    position: absolute;
+
+    inset: -2px;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    box-shadow:
+        0 0 22px rgba(255, 210, 82, 0.2);
+}
+
+@keyframes goldenInstructionPulse {
+    0%,
+    100% {
+        box-shadow:
+            0 10px 30px rgba(142, 101, 43, 0.12),
+            0 0 24px rgba(255, 210, 82, 0.22);
+    }
+
+    50% {
+        box-shadow:
+            0 10px 30px rgba(142, 101, 43, 0.16),
+            0 0 35px rgba(255, 210, 82, 0.42);
+    }
+}
+
+
+/* =========================================================
+   20. FINAL BURST SCREEN
+   ========================================================= */
+
+#finalBurstScreen {
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 226, 191, 0.6),
+            rgba(255, 192, 214, 0.3) 35%,
+            transparent 70%
+        );
+
+    overflow: hidden;
+}
+
+.final-center {
+    position: relative;
+
+    z-index: 50;
+
+    width: min(90vw, 440px);
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: scale(0.9);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+#finalBurstScreen.show-content .final-center {
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+.final-mini {
+    font-size: 0.63rem;
+
+    letter-spacing: 1.5px;
+
+    color: rgba(104, 72, 91, 0.58);
+}
+
+#finalHeart {
+    width: 66px;
+    height: 66px;
+
+    margin: 16px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: white;
+
+    font-size: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffb3ca,
+            #ee6b99
+        );
+
+    box-shadow:
+        0 0 25px rgba(255, 116, 163, 0.55),
+        0 0 60px rgba(255, 180, 202, 0.45),
+        inset 0 2px 10px rgba(255, 255, 255, 0.55);
+
+    animation:
+        finalHeartPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes finalHeartPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+#finalMessageOne {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(1.7rem, 7vw, 2.5rem);
+
+    font-weight: 500;
+
+    line-height: 1.15;
+
+    color: #71465e;
+}
+
+#finalMessageTwo {
+    margin-top: 14px;
+
+    font-size: 0.88rem;
+
+    color: rgba(81, 59, 79, 0.76);
+}
+
+.final-button {
+    margin-top: 24px;
+}
+
+
+/* =========================================================
+   21. FINAL PARTICLES
+   ========================================================= */
+
+.final-particle {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: var(--particle-size, 6px);
+    height: var(--particle-size, 6px);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff 0 20%,
+            #ffd16a 45%,
+            #ff91b4 100%
+        );
+
+    box-shadow:
+        0 0 10px rgba(255, 193, 87, 0.8);
+
+    animation:
+        finalParticleBurst
+        var(--burst-duration, 1.5s)
+        cubic-bezier(.1,.8,.2,1)
+        forwards;
+}
+
+@keyframes finalParticleBurst {
+    from {
+        opacity: 1;
+
+        transform:
+            translate3d(0, 0, 0)
+            scale(1);
+    }
+
+    to {
+        opacity: 0;
+
+        transform:
+            translate3d(
+                var(--dx),
+                var(--dy),
+                0
+            )
+            scale(0.1);
+    }
+}
+
+
+/* =========================================================
+   22. FINAL FIRECRACKER LINES
+   ========================================================= */
+
+.firecracker-ray {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 2px;
+    height: 100px;
+
+    transform-origin: center bottom;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 226, 116, 1),
+            rgba(255, 126, 177, 0)
+        );
+
+    box-shadow:
+        0 0 9px rgba(255, 201, 74, 0.75);
+
+    animation:
+        rayBurst 1.25s ease-out forwards;
+}
+
+@keyframes rayBurst {
+    from {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -100%)
+            rotate(var(--angle))
+            scaleY(0.1);
+    }
+
+    to {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -100%)
+            rotate(var(--angle))
+            scaleY(1);
+    }
+}
+
+
+/* =========================================================
+   23. SCREEN FLASH
+   ========================================================= */
+
+#screenFlash {
+    position: fixed;
+    inset: 0;
+
+    z-index: 900;
+
+    background: white;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+#screenFlash.flash {
+    animation:
+        screenFlashAnimation 0.65s ease-out;
+}
+
+@keyframes screenFlashAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 0.75;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   24. TOUCH SPARKS
+   ========================================================= */
+
+#touchSparkLayer {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    pointer-events: none;
+}
+
+.touch-spark {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 10px rgba(255, 125, 174, 0.9),
+        0 0 18px rgba(255, 225, 239, 0.9);
+
+    animation:
+        touchSpark 0.65s ease-out forwards;
+}
+
+@keyframes touchSpark {
+    from {
+        opacity: 1;
+
+        transform:
+            translate3d(0, 0, 0)
+            scale(1);
+    }
+
+    to {
+        opacity: 0;
+
+        transform:
+            translate3d(
+                var(--spark-x),
+                var(--spark-y),
+                0
+            )
+            scale(0.1);
+    }
+}
+
+/* =========================================================
+   25. SOUND INDICATOR
+   ========================================================= */
+
+#soundIndicator {
+    position: fixed;
+
+    right: 15px;
+    bottom: max(15px, env(safe-area-inset-bottom));
+
+    z-index: 500;
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.25);
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    opacity: 0.7;
+}
+
+.sound-dot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #dd7197;
+
+    box-shadow:
+        0 0 8px rgba(221, 113, 151, 0.8);
+
+    animation:
+        soundPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes soundPulse {
+    0%,
+    100% {
+        transform: scale(0.7);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   26. SPECIAL BALLOON POP ANIMATION
+   ========================================================= */
+
+.special-balloon.popping {
+    animation:
+        specialPop 0.32s ease-out forwards !important;
+}
+
+@keyframes specialPop {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    55% {
+        opacity: 1;
+        transform: scale(1.25);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+
+/* =========================================================
+   27. GOLDEN BALLOON POP
+   ========================================================= */
+
+#goldenBalloon.golden-pop {
+    animation:
+        goldenPop 0.5s ease-out forwards;
+}
+
+@keyframes goldenPop {
+    0% {
+        transform:
+            translateX(-50%)
+            translateY(-50vh)
+            scale(1);
+        opacity: 1;
+    }
+
+    45% {
+        transform:
+            translateX(-50%)
+            translateY(-50vh)
+            scale(1.35);
+    }
+
+    100% {
+        transform:
+            translateX(-50%)
+            translateY(-50vh)
+            scale(0);
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   28. RESPONSIVE MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .intro-content {
+        padding: 20px 14px;
+    }
+
+    .intro-content h1 {
+        font-size: clamp(1.8rem, 9vw, 2.45rem);
+    }
+
+    .intro-content p {
+        font-size: 0.79rem;
+    }
+
+    .collect-instruction {
+        font-size: 0.68rem;
+        padding: 10px 13px;
+    }
+
+    .glass-button {
+        font-size: 0.75rem;
+        padding: 11px 19px;
+    }
+
+    .special-balloon {
+        width: 62px;
+        height: 62px;
+    }
+
+    .special-balloon::after {
+        font-size: 22px;
+    }
+
+    .note-card,
+    .progress-card {
+        max-height: 86dvh;
+        overflow-y: auto;
+        scrollbar-width: none;
+    }
+
+    .note-card::-webkit-scrollbar,
+    .progress-card::-webkit-scrollbar {
+        display: none;
+    }
+
+    .note-card {
+        padding: 27px 20px;
+    }
+
+    .note-card h2 {
+        font-size: 1.38rem;
+    }
+
+    .note-card p {
+        font-size: 0.78rem;
+    }
+
+    .progress-card {
+        padding: 27px 20px;
+    }
+
+    .golden-intro {
+        top: 13%;
+    }
+
+    .golden-intro h2 {
+        font-size: 1.6rem;
+    }
+
+    #goldenBalloon {
+        width: 88px;
+        height: 105px;
+    }
+
+    #goldenInstruction {
+        bottom: 12%;
+        font-size: 0.73rem;
+    }
+
+    #finalMessageOne {
+        font-size: 1.65rem;
+    }
+
+    #finalMessageTwo {
+        font-size: 0.78rem;
+    }
+}
+
+
+/* =========================================================
+   29. VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-height: 650px) {
+
+    .intro-content {
+        transform: scale(0.88);
+    }
+
+    .note-card {
+        transform: scale(0.9);
+    }
+
+    .progress-card {
+        transform: scale(0.9);
+    }
+
+    .golden-intro {
+        top: 9%;
+    }
+
+    #goldenInstruction {
+        bottom: 8%;
+    }
+}
+
+
+/* =========================================================
+   30. SAFE AREA
+   ========================================================= */
+
+@supports (padding: max(0px)) {
+
+    .game-screen {
+        padding-left: max(18px, env(safe-area-inset-left));
+        padding-right: max(18px, env(safe-area-inset-right));
+    }
+}
+
+
+/* =========================================================
+   31. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+

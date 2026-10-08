@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta
+        name="theme-color"
+        content="#f7c5d8"
+    >
+
+    <title>Aradhya's World ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         AMBIENT BACKGROUND
+    ========================== -->
+
+    <div id="backgroundLayer">
+
+        <div class="fairy-lights">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="petal-layer" id="petalLayer"></div>
+
+        <div class="heart-layer" id="heartLayer"></div>
+
+        <div class="particle-layer" id="particleLayer"></div>
+
+        <div
+            class="touch-effect-layer"
+            id="touchEffectLayer"
+        ></div>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN EXPERIENCE
+    ========================== -->
+
+    <main id="app">
+
+
+        <!-- =========================
+             SCREEN 1 — PASSWORD
+        ========================== -->
+
+        <section
+            id="passwordScreen"
+            class="screen active"
+        >
+
+            <div class="screen-content">
+
+                <div class="hero-heart">
+                    ❤️
+                </div>
+
+                <p class="eyebrow">
+                    A little world made just for you
+                </p>
+
+                <h1>
+                    Aradhya's World
+                </h1>
+
+                <p class="subtitle">
+                    This world is created only for you
+                </p>
+
+
+                <div class="password-card">
+
+                    <div class="card-shine"></div>
+
+                    <div class="lock-icon">
+                        🔐
+                    </div>
+
+                    <h2>
+                        Your Secret Key
+                    </h2>
+
+                    <p class="password-label">
+                        Enter Password
+                    </p>
+
+                    <div class="password-field">
+
+                        <input
+                            id="passwordInput"
+                            type="password"
+                            inputmode="numeric"
+                            autocomplete="off"
+                            maxlength="6"
+                            placeholder="Enter Password"
+                            aria-label="Enter Password"
+                        >
+
+                    </div>
+
+                    <button
+                        id="unlockButton"
+                        class="glow-button"
+                        type="button"
+                    >
+                        Unlock My World ❤️
+                    </button>
+
+                    <p
+                        id="passwordHint"
+                        class="password-hint"
+                        aria-live="polite"
+                    ></p>
+
+                    <p class="bottom-message">
+                        This key always belonged to you ❤️
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SCREEN 2 — CONGRATULATIONS
+        ========================== -->
+
+        <section
+            id="congratulationsScreen"
+            class="screen"
+        >
+
+            <div class="screen-content">
+
+                <div class="success-glow">
+                    ✨
+                </div>
+
+                <p class="success-small">
+                    Access Granted
+                </p>
+
+                <h2>
+                    Congratulations,
+                    <br>
+                    my girl ❤️
+                </h2>
+
+                <p class="success-text">
+                    You got it.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SCREEN 3 — WELCOME
+        ========================== -->
+
+        <section
+            id="welcomeScreen"
+            class="screen"
+        >
+
+            <div class="screen-content welcome-content">
+
+                <div class="welcome-glow-heart">
+                    💗
+                </div>
+
+                <p class="welcome-small">
+                    Welcome to your world
+                </p>
+
+                <h2>
+                    Welcome Miss Beautiful
+                </h2>
+
+                <div class="welcome-sparkles">
+                    ✨ ✦ ✨
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SCREEN 4 — SCANNER
+        ========================== -->
+
+        <section
+            id="scannerScreen"
+            class="screen"
+        >
+
+            <div class="screen-content">
+
+                <div class="scanner-card">
+
+                    <div class="scanner-card-glow"></div>
+
+                    <div class="scanner-top">
+
+                        <span class="scanner-dot"></span>
+
+                        <span>
+                            BEAUTY ANALYSIS SYSTEM
+                        </span>
+
+                    </div>
+
+
+                    <div class="scanner-frame">
+
+                        <div class="scanner-corner top-left"></div>
+                        <div class="scanner-corner top-right"></div>
+                        <div class="scanner-corner bottom-left"></div>
+                        <div class="scanner-corner bottom-right"></div>
+
+                        <div
+                            class="scan-line"
+                            id="scanLine"
+                        ></div>
+
+                        <div class="scan-center">
+
+                            <div class="scan-heart">
+                                ♡
+                            </div>
+
+                            <p>
+                                SCANNING
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="scanner-status">
+
+                        <p
+                            id="scanText"
+                            class="scan-main-text"
+                        >
+                            Scanning...
+                        </p>
+
+                        <div class="progress-container">
+
+                            <div
+                                id="scanProgress"
+                                class="progress-bar"
+                            ></div>
+
+                        </div>
+
+                        <p
+                            id="scanPercentage"
+                            class="scan-percentage"
+                        >
+                            0%
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        id="scannerMessage"
+                        class="scanner-message"
+                    >
+                        Initialising scanner...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SCREEN 5 — TEMPERATURE
+        ========================== -->
+
+        <section
+            id="analysisScreen"
+            class="screen"
+        >
+
+            <div class="screen-content">
+
+                <div class="analysis-card">
+
+                    <div class="analysis-icon">
+                        🌡️
+                    </div>
+
+                    <p class="analysis-label">
+                        SYSTEM ANALYSIS
+                    </p>
+
+                    <h2>
+                        Analysing
+                        <br>
+                        Temperature
+                    </h2>
+
+                    <div class="temperature-display">
+
+                        <div
+                            id="temperatureValue"
+                            class="temperature-value"
+                        >
+                            --°C
+                        </div>
+
+                        <div class="temperature-wave"></div>
+
+                    </div>
+
+                    <p
+                        id="analysisText"
+                        class="analysis-text"
+                    >
+                        Analysing temperature...
+                    </p>
+
+                    <p
+                        id="analysisSubtext"
+                        class="analysis-subtext"
+                    >
+                        Please wait...
+                    </p>
+
+                    <div class="processing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SCREEN 6 — ARADHYA DETECTED
+        ========================== -->
+
+        <section
+            id="detectedScreen"
+            class="screen"
+        >
+
+            <div class="screen-content detected-content">
+
+                <div
+                    class="detected-card"
+                    id="detectedCard"
+                >
+
+                    <div class="detected-card-glow"></div>
+
+                    <div class="detected-header">
+
+                        <div class="detected-heart">
+                            ❤️
+                        </div>
+
+                        <p class="detected-system">
+                            SYSTEM RESULT
+                        </p>
+
+                        <h2>
+                            ARADHYA
+                            <span>DETECTED</span>
+                        </h2>
+
+                    </div>
+
+
+                    <div class="status-divider"></div>
+
+
+                    <div class="status-item">
+
+                        <span class="status-icon">
+                            ✨
+                        </span>
+
+                        <div class="status-info">
+
+                            <span class="status-label">
+                                Status
+                            </span>
+
+                            <strong>
+                                Too Much Cute
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="status-item">
+
+                        <span class="status-icon">
+                            💗
+                        </span>
+
+                        <div class="status-info">
+
+                            <span class="status-label">
+                                Charm Level
+                            </span>
+
+                            <strong>
+                                Too Much Charming
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="status-item">
+
+                        <span class="status-icon">
+                            🌎
+                        </span>
+
+                        <div class="status-info">
+
+                            <span class="status-label">
+                                World Analysis
+                            </span>
+
+                            <strong>
+                                World brightness increased
+                                after you took birth
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="detectedFinalMessage"
+                        class="detected-final-message"
+                    >
+                        Oh, now I know... ❤️
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SCREEN 7 — HEART
+        ========================== -->
+
+        <section
+            id="heartScreen"
+            class="screen"
+        >
+
+            <div class="screen-content heart-content">
+
+                <p class="heart-intro">
+                    One last thing...
+                </p>
+
+                <div
+                    id="interactiveHeart"
+                    class="interactive-heart"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Tap the glowing heart"
+                >
+
+                    <div class="heart-aura"></div>
+
+                    <div class="heart-core">
+                        ❤️
+                    </div>
+
+                    <div class="heart-ring ring-one"></div>
+                    <div class="heart-ring ring-two"></div>
+
+                </div>
+
+                <p class="heart-instruction">
+                    Tap the heart ❤️
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             HEART BURST / CONTINUE
+        ========================== -->
+
+        <div
+            id="heartBurstLayer"
+            class="heart-burst-layer"
+            aria-hidden="true"
+        ></div>
+
+
+        <div
+            id="continueContainer"
+            class="continue-container"
+        >
+
+            <div class="continue-glow"></div>
+
+            <p class="continue-message">
+                Ready for the next memory?
+            </p>
+
+            <button
+                id="continueButton"
+                class="glow-button final-button"
+                type="button"
+            >
+                Continue Our Journey ❤️
+            </button>
+
+        </div>
+
+
+
+        <!-- =========================
+             TRANSITION OVERLAY
+        ========================== -->
+
+        <div
+            id="transitionOverlay"
+            class="transition-overlay"
+        >
+
+            <div class="transition-glow"></div>
+
+            <div class="transition-heart">
+                ❤️
+            </div>
+
+            <p>
+                Loading the next memory...
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         BACKGROUND MUSIC
+         CREATED BY JAVASCRIPT
+    ========================== -->
+
+    <div
+        id="audioStatus"
+        aria-hidden="true"
+    ></div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#f8c8d8">
+
+    <title>Aradhya's World ❤️ — Balloon Memories</title>
+
+    <link rel="stylesheet" href="balloon.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         DREAMY SKY BACKGROUND
+         ========================================= -->
+
+    <div id="skyBackground">
+
+        <div class="sky-glow sky-glow-one"></div>
+        <div class="sky-glow sky-glow-two"></div>
+
+        <!-- Moving Clouds -->
+        <div id="cloudLayer">
+
+            <div class="cloud cloud-one">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="cloud cloud-two">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="cloud cloud-three">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="cloud cloud-four">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+
+        <!-- Sparkles -->
+        <div id="sparkleLayer"></div>
+
+        <!-- Floating Hearts -->
+        <div id="floatingHeartLayer"></div>
+
+        <!-- Falling Petals -->
+        <div id="petalLayer"></div>
+
+    </div>
+
+
+    <!-- =========================================
+         MAIN GAME AREA
+         ========================================= -->
+
+    <main id="game">
+
+        <!-- =====================================
+             INTRO SCREEN
+             ===================================== -->
+
+        <section id="introScreen" class="game-screen active">
+
+            <div class="intro-content">
+
+                <div class="intro-small">
+                    A little memory game for you ✨
+                </div>
+
+                <h1>
+                    Collect The<br>
+                    Special Balloons 🎈
+                </h1>
+
+                <div class="intro-heart">
+                    ♥
+                </div>
+
+                <p>
+                    Somewhere among all these balloons,
+                    <strong>9 special memories</strong> are waiting for you.
+                </p>
+
+                <div class="collect-instruction">
+                    <span class="instruction-glow"></span>
+                    Try to collect all 9 special balloons
+                    <span class="instruction-glow"></span>
+                </div>
+
+                <div class="intro-subtext">
+                    Keep an eye out for the glowing hearts 💗
+                </div>
+
+                <button id="startGameButton" class="glass-button">
+                    Start the little journey ✨
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             BALLOON GAME SCREEN
+             ===================================== -->
+
+        <section id="balloonGameScreen" class="game-screen">
+
+            <!-- Top HUD -->
+
+            <div id="gameHUD">
+
+                <div class="hud-title">
+                    Our Little Memory Hunt 💗
+                </div>
+
+                <div id="progressMini">
+                    <span id="collectedNumber">0</span>
+                    <span class="hud-divider">/</span>
+                    <span>9</span>
+                    <span class="hud-label">special</span>
+                </div>
+
+            </div>
+
+
+            <!-- Balloon Area -->
+
+            <div id="balloonArea">
+
+                <!--
+                    Normal and special balloons
+                    will be generated here by JavaScript.
+                -->
+
+                <div id="normalBalloonLayer"></div>
+
+                <div id="specialBalloonLayer"></div>
+
+                <div id="balloonEffectLayer"></div>
+
+            </div>
+
+
+            <!-- Bottom Hint -->
+
+            <div id="gameHint">
+                Find the glowing heart balloons ✨
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             SPECIAL MEMORY NOTE
+             ===================================== -->
+
+        <section id="noteScreen" class="game-screen overlay-screen">
+
+            <div class="note-card glass-card">
+
+                <div class="note-decoration top-decoration">
+                    ✦
+                </div>
+
+                <div class="note-label">
+                    SPECIAL MEMORY FOUND
+                </div>
+
+                <div id="noteBalloonIcon" class="note-balloon-icon">
+                    ♥
+                </div>
+
+                <h2 id="noteTitle">
+                    A little note for you 💗
+                </h2>
+
+                <p id="noteMessage">
+                    You make every ordinary day feel
+                    a little more beautiful.
+                </p>
+
+                <div class="note-line"></div>
+
+                <div id="noteCounter" class="note-counter">
+                    Special Balloon #1
+                </div>
+
+                <button id="continueGameButton" class="glass-button glow-button">
+                    Continue the game ✨
+                </button>
+
+                <div class="note-decoration bottom-decoration">
+                    ♡
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PROGRESS CARD
+             ===================================== -->
+
+        <section id="progressScreen" class="game-screen overlay-screen">
+
+            <div class="progress-card glass-card">
+
+                <div class="progress-icon">
+                    🎈
+                </div>
+
+                <div class="progress-label">
+                    MEMORY COLLECTION
+                </div>
+
+                <h2 id="progressTitle">
+                    1 Special Balloon Collected
+                </h2>
+
+                <div class="progress-track">
+
+                    <div
+                        id="progressFill"
+                        class="progress-fill"
+                    ></div>
+
+                </div>
+
+                <div class="progress-count">
+                    <span id="progressCollected">1</span>
+                    <span> / 9</span>
+                </div>
+
+                <p id="progressMessage">
+                    8 more little memories are waiting for you. 💗
+                </p>
+
+                <button id="progressContinueButton" class="glass-button">
+                    Keep collecting ✨
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             GOLDEN BALLOON SCREEN
+             ===================================== -->
+
+        <section id="goldenScreen" class="game-screen">
+
+            <div class="golden-intro">
+
+                <div class="golden-small">
+                    You found them all... ✨
+                </div>
+
+                <h2>
+                    One last balloon
+                </h2>
+
+                <div class="golden-description">
+                    There is just one final little surprise
+                    waiting for you.
+                </div>
+
+            </div>
+
+            <!-- Golden Balloon -->
+            <div id="goldenBalloonArea">
+
+                <div id="goldenBalloon">
+
+                    <div class="golden-balloon-shine"></div>
+
+                    <div class="golden-balloon-heart">
+                        ♥
+                    </div>
+
+                    <div class="golden-balloon-knot"></div>
+
+                    <div class="golden-balloon-string"></div>
+
+                </div>
+
+            </div>
+
+            <!-- Instruction appears after balloon reaches center -->
+
+            <div id="goldenInstruction">
+
+                <div class="golden-instruction-glow"></div>
+
+                <span>
+                    Pop the last one ✨
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             FINAL BURST
+             ===================================== -->
+
+        <section id="finalBurstScreen" class="game-screen">
+
+            <div id="finalFirecrackerLayer"></div>
+
+            <div id="finalGlowLayer"></div>
+
+            <div id="finalParticleLayer"></div>
+
+            <div class="final-center">
+
+                <div class="final-mini">
+                    A little something from my heart...
+                </div>
+
+                <div id="finalHeart">
+                    ♥
+                </div>
+
+                <h1 id="finalMessageOne">
+                    You make my life<br>
+                    more beautiful 🤌✨
+                </h1>
+
+                <p id="finalMessageTwo">
+                    Thank you for taking birth 🧿✨😭
+                </p>
+
+                <button
+                    id="part3Button"
+                    class="glass-button final-button"
+                >
+                    Continue to our memories ❤️
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         GLOBAL EFFECT LAYERS
+         ========================================= -->
+
+    <div id="screenFlash"></div>
+
+    <div id="touchSparkLayer"></div>
+
+    <div id="soundIndicator">
+        <span class="sound-dot"></span>
+    </div>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
+    <script src="balloon.js"></script>
+
+
+</body>
+</html>

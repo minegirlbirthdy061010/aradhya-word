@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#f8dce3">
+
+    <title>Aradhya's World ❤️</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Parisienne&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="part5.css">
+</head>
+
+<body>
+
+<div id="app">
+
+    <!-- ==================================================
+         AMBIENT WORLD
+    =================================================== -->
+
+    <div class="background-world">
+
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+
+        <div class="moon-glow"></div>
+
+        <div id="stars"></div>
+        <div id="floatingHearts"></div>
+        <div id="floatingPetals"></div>
+
+        <div class="grain"></div>
+
+    </div>
+
+
+    <!-- ==================================================
+         TOP PROGRESS
+    =================================================== -->
+
+    <div class="top-progress">
+
+        <div class="progress-track">
+            <div id="progressBar"></div>
+        </div>
+
+        <span id="progressLabel">
+            A little confession
+        </span>
+
+    </div>
+
+
+    <!-- ==================================================
+         INTRO
+    =================================================== -->
+
+    <section class="screen active" id="introScreen">
+
+        <div class="intro-wrap">
+
+            <div class="intro-decoration">
+                <span>✦</span>
+                <span>♡</span>
+                <span>✦</span>
+            </div>
+
+            <div class="intro-glass">
+
+                <div class="tiny-heading">
+                    FOR SOMEONE SPECIAL
+                </div>
+
+                <div class="intro-heart">
+                    <span>♥</span>
+                </div>
+
+                <h1>
+                    I think those notes<br>
+                    weren't enough...
+                    <span>🥹</span>
+                </h1>
+
+                <div class="intro-line"></div>
+
+                <p>
+                    So I tried to find
+                    <strong>10 reasons</strong>
+                    why I love you. ❤️
+                </p>
+
+                <button class="main-button" id="startButton">
+                    <span>Find 10 Reasons</span>
+                    <b>✦</b>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         REASONS
+    =================================================== -->
+
+    <section class="screen" id="reasonsScreen">
+
+        <div class="reason-top">
+
+            <div class="reason-count">
+                <strong id="reasonNumber">01</strong>
+                <span>/ 10</span>
+            </div>
+
+            <div class="reason-caption">
+                ONE OF MANY
+            </div>
+
+        </div>
+
+
+        <div class="reason-world">
+
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+
+            <div class="card-shadow"></div>
+
+            <div class="glass-reason-card" id="reasonCard">
+
+                <div class="glass-reflection"></div>
+
+                <div class="card-corner top-left"></div>
+                <div class="card-corner bottom-right"></div>
+
+                <div class="card-header">
+                    <span>ARADHYA'S WORLD</span>
+                    <i>♡</i>
+                </div>
+
+                <div class="reason-number-large" id="reasonLargeNumber">
+                    01
+                </div>
+
+                <div class="little-divider">
+                    <span></span>
+                    ✦
+                    <span></span>
+                </div>
+
+                <h2 id="reasonTitle">
+                    Your smile.
+                </h2>
+
+                <p id="reasonDescription">
+                    Somehow, it makes everything feel a little lighter.
+                </p>
+
+                <div class="card-footer">
+                    <span>reason no.</span>
+                    <strong id="reasonFooterNumber">01</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="reason-bottom">
+
+            <div class="auto-hint">
+                <span class="pulse-dot"></span>
+                another reason is coming...
+            </div>
+
+            <button class="skip-button" id="skipReason">
+                <span>Next</span>
+                <b>→</b>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         TWIST
+    =================================================== -->
+
+    <section class="screen" id="twistScreen">
+
+        <div class="twist-content">
+
+            <div class="twist-label">
+                SO...
+            </div>
+
+            <h2>
+                That's it.
+            </h2>
+
+            <div class="twist-number">
+                10
+            </div>
+
+            <p id="twistText">
+                Only ten reasons.
+            </p>
+
+            <div class="twist-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <button class="minimal-button" id="twistButton">
+                Wait...
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         I LIED
+    =================================================== -->
+
+    <section class="screen" id="liedScreen">
+
+        <div class="lied-paper">
+
+            <div class="paper-tape"></div>
+
+            <div class="ink-small">
+                actually...
+            </div>
+
+            <div class="lied-text">
+                I lied.
+            </div>
+
+            <div class="ink-heart">
+                ♥
+            </div>
+
+            <div class="lied-sign">
+                — Saksham
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         FLYING PAPERS
+    =================================================== -->
+
+    <section class="screen paper-screen" id="paperScreen">
+
+        <div class="paper-intro">
+
+            <div class="paper-eyebrow">
+                THERE'S SOMETHING I FORGOT
+            </div>
+
+            <h2>
+                There are<br>
+                <em>many more.</em>
+            </h2>
+
+            <p>
+                So many that counting them<br>
+                doesn't really make sense anymore.
+            </p>
+
+        </div>
+
+
+        <div id="paperUniverse">
+
+            <div class="camera-world" id="cameraWorld">
+
+                <div id="paperField"></div>
+
+                <div class="paper-core">
+                    <div class="core-heart">♥</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         HEART REVEAL
+    =================================================== -->
+
+    <section class="screen heart-screen" id="heartScreen">
+
+        <div id="heartFormation"></div>
+
+        <div class="heart-overlay"></div>
+
+        <div class="heart-message">
+
+            <div class="heart-message-heart">
+                ♥
+            </div>
+
+            <div class="message-lines">
+
+                <p>I tried to stop at 10...</p>
+
+                <p>But every time I finished...</p>
+
+                <p>I found another reason.</p>
+
+                <p>And another...</p>
+
+                <p>And another...</p>
+
+                <p>And another...</p>
+
+            </div>
+
+            <div class="message-divider">
+                ✦
+            </div>
+
+            <h2>
+                So I stopped<br>
+                counting.
+            </h2>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         FINAL
+    =================================================== -->
+
+    <section class="screen final-screen" id="finalScreen">
+
+        <div id="finalStars"></div>
+
+        <div class="final-glow"></div>
+
+        <div class="final-content">
+
+            <div class="final-label">
+                BECAUSE...
+            </div>
+
+            <div class="final-heart">
+                ♥
+            </div>
+
+            <h1>
+                There are too many<br>
+                reasons to love you.
+            </h1>
+
+            <div class="final-divider">
+                <span></span>
+                ✦
+                <span></span>
+            </div>
+
+            <div class="final-subtext">
+
+                <p>Too many to count...</p>
+
+                <p>Too many to explain...</p>
+
+                <p>
+                    And too many to fit<br>
+                    into one lifetime.
+                </p>
+
+            </div>
+
+            <div class="final-signature">
+                <span>with all my heart</span>
+                <strong>Saksham</strong>
+            </div>
+
+            <button class="main-button final-button" id="continueButton">
+                <span>Continue Our Story</span>
+                <b>✦</b>
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="part5.js"></script>
+
+</body>
+</html>
