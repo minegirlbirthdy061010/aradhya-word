@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ffe8f0">
+  <meta name="description"
+        content="A little heart-catching game, made with love for Aradhya.">
+
+  <title>Catch My Heart ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="part06.css">
+  <script src="part06.js" defer></script>
+</head>
+
+<body>
+  <main class="game-app" id="heartGame">
+
+    <!-- DREAMY BACKGROUND -->
+    <div class="background-glow glow-one" aria-hidden="true"></div>
+    <div class="background-glow glow-two" aria-hidden="true"></div>
+    <div class="background-glow glow-three" aria-hidden="true"></div>
+    <div class="ambient-particles" id="ambientParticles"
+         aria-hidden="true"></div>
+
+    <!-- INTRO SCREEN -->
+    <section class="scene intro-scene active"
+             id="introScene"
+             aria-labelledby="introTitle">
+
+      <div class="intro-content">
+
+        <div class="eyebrow">
+          <span class="eyebrow-line"></span>
+          <span>A LITTLE GAME, A LOT OF LOVE</span>
+          <span class="eyebrow-line"></span>
+        </div>
+
+        <div class="hero-heart" aria-hidden="true">
+          <span class="hero-heart-orbit orbit-one"></span>
+          <span class="hero-heart-orbit orbit-two"></span>
+          <span class="hero-heart-symbol">♥</span>
+          <span class="hero-heart-spark spark-one">✦</span>
+          <span class="hero-heart-spark spark-two">✧</span>
+          <span class="hero-heart-spark spark-three">♡</span>
+        </div>
+
+        <h1 class="intro-title" id="introTitle">
+          Catch My <span>Heart</span>
+        </h1>
+
+        <p class="intro-subtitle">
+          A tiny game made for someone<br class="mobile-break">
+          who means the whole world to me.
+        </p>
+
+        <div class="glass-card mission-card">
+          <div class="mission-icon" aria-hidden="true">♡</div>
+
+          <p class="card-overline">YOUR LITTLE MISSION</p>
+
+          <h2>Catch all 50 hearts</h2>
+
+          <p class="mission-description">
+            Move your basket, catch the falling hearts
+            and collect a little piece of my love.
+          </p>
+
+          <div class="mission-divider">
+            <span>✦</span>
+          </div>
+
+          <div class="mission-details">
+            <div class="mission-detail">
+              <span class="detail-icon" aria-hidden="true">⏳</span>
+              <span>40 seconds</span>
+            </div>
+
+            <span class="detail-separator" aria-hidden="true"></span>
+
+            <div class="mission-detail">
+              <span class="detail-icon" aria-hidden="true">💗</span>
+              <span>50 hearts</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="primary-button" id="startButton" type="button">
+          <span class="button-label">Let's Catch Some Love</span>
+          <span class="button-arrow" aria-hidden="true">↗</span>
+          <span class="button-shine" aria-hidden="true"></span>
+        </button>
+
+        <p class="intro-footnote">
+          MADE WITH LOVE, JUST FOR YOU
+          <span aria-hidden="true">♡</span>
+        </p>
+
+      </div>
+    </section>
+
+    <!-- GAME SCREEN -->
+    <section class="scene game-scene"
+             id="gameScene"
+             aria-label="Heart catching game"
+             hidden>
+
+      <header class="game-header">
+        <div class="game-heading">
+          <span class="game-kicker">YOUR LITTLE LOVE QUEST</span>
+          <h2>Catch the Hearts <span aria-hidden="true">♡</span></h2>
+        </div>
+
+        <div class="timer-card glass-card" id="timerCard">
+          <span class="timer-icon" aria-hidden="true">◷</span>
+          <span class="timer-value" id="timerText">30</span>
+          <span class="timer-unit">SEC</span>
+        </div>
+      </header>
+
+      <div class="score-panel glass-card">
+        <div class="score-info">
+          <span class="score-label">HEARTS COLLECTED</span>
+          <div class="score-number">
+            <span id="caughtText">0</span>
+            <span class="score-total">/ 50</span>
+          </div>
+        </div>
+
+        <div class="score-heart" aria-hidden="true">♥</div>
+
+        <div class="progress-area">
+          <div class="progress-track"
+               id="progressTrack"
+               role="progressbar"
+               aria-label="Hearts collected"
+               aria-valuemin="0"
+               aria-valuemax="50"
+               aria-valuenow="0">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-caption">
+            <span>Every heart counts</span>
+            <span id="progressDots" aria-hidden="true">♡ ♡ ♡</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HEARTS AND BASKET LIVE INSIDE THIS FIELD -->
+      <div class="game-field"
+           id="gameField"
+           aria-label="Move your basket to catch falling hearts">
+
+        <div class="field-glow field-glow-one" aria-hidden="true"></div>
+        <div class="field-glow field-glow-two" aria-hidden="true"></div>
+
+        <div class="field-decoration" aria-hidden="true">
+          <span class="field-star star-a">✧</span>
+          <span class="field-star star-b">✦</span>
+          <span class="field-star star-c">·</span>
+          <span class="field-star star-d">♡</span>
+        </div>
+
+        <div class="hearts-layer"
+             id="heartsLayer"
+             aria-hidden="true"></div>
+
+        <div class="effects-layer"
+             id="effectsLayer"
+             aria-hidden="true"></div>
+
+        <div class="basket-wrap"
+             id="basket"
+             role="img"
+             aria-label="Your heart-catching basket">
+
+          <div class="basket-aura" aria-hidden="true"></div>
+          <div class="basket-rim" aria-hidden="true"></div>
+
+          <div class="basket-body">
+            <span class="basket-handle" aria-hidden="true"></span>
+            <span class="basket-heart basket-heart-one"
+                  aria-hidden="true">♥</span>
+            <span class="basket-heart basket-heart-two"
+                  aria-hidden="true">♥</span>
+            <span class="basket-heart basket-heart-three"
+                  aria-hidden="true">♥</span>
+            <span class="basket-count" id="basketHeartCount">0</span>
+          </div>
+
+          <div class="basket-base" aria-hidden="true"></div>
+        </div>
+
+        <div class="field-bottom-glow" aria-hidden="true"></div>
+      </div>
+
+      <footer class="game-footer">
+        <div class="game-hint glass-card" id="gameHint">
+          <span class="hint-sparkle" aria-hidden="true">✦</span>
+          <span>Catch them all, my favourite person! 💗</span>
+        </div>
+
+        <p class="game-instruction">
+          <span aria-hidden="true">☝</span>
+          Slide your finger to move the basket
+        </p>
+      </footer>
+
+    </section>
+
+    <!-- WINNING SCREEN -->
+    <section class="scene win-scene"
+             id="winScene"
+             aria-labelledby="winTitle"
+             hidden>
+
+      <div class="win-sparkles"
+           id="winSparkles"
+           aria-hidden="true"></div>
+
+      <div class="win-content">
+
+        <div class="win-badge">
+          <span class="win-badge-star" aria-hidden="true">✦</span>
+          YOU DID IT
+          <span class="win-badge-star" aria-hidden="true">✦</span>
+        </div>
+
+        <div class="win-heart-art" aria-hidden="true">
+          <span class="win-heart-halo"></span>
+          <span class="win-heart-main">♥</span>
+          <span class="win-floating-heart floating-heart-one">♥</span>
+          <span class="win-floating-heart floating-heart-two">♡</span>
+          <span class="win-floating-heart floating-heart-three">✦</span>
+          <span class="win-floating-heart floating-heart-four">✧</span>
+        </div>
+
+        <div class="glass-card win-card">
+          <p class="win-overline">A LITTLE REMINDER FOR YOU</p>
+
+          <h1 class="win-title" id="winTitle">
+            You Won <span>My Heart</span>
+            <span class="win-title-heart" aria-hidden="true">♥</span>
+          </h1>
+
+          <div class="win-divider">
+            <span></span>
+            <span class="win-divider-heart" aria-hidden="true">♡</span>
+            <span></span>
+          </div>
+
+          <h2 class="result-title" id="resultTitle">
+            Every heart, collected with love.
+          </h2>
+
+          <p class="win-message">
+            Mera dil toh kab ka aapka hai.
+            <span class="message-heart" aria-hidden="true">❤️</span>
+          </p>
+
+          <p class="cheating-message"
+             id="cheatingMessage"
+             hidden>
+            Malkin ko jitane ke liye thodi si cheating
+            toh banti hai! 😂❤️👑
+          </p>
+
+          <div class="win-stat">
+            <span class="win-stat-icon" aria-hidden="true">♥</span>
+            <span>50 hearts</span>
+            <span class="win-stat-divider" aria-hidden="true">·</span>
+            <span>One special person</span>
+          </div>
+        </div>
+
+        <button class="primary-button continue-button"
+                id="continueButton"
+                type="button">
+          <span class="button-label">Continue Our Story</span>
+          <span class="button-arrow" aria-hidden="true">♡</span>
+          <span class="button-shine" aria-hidden="true"></span>
+        </button>
+
+        <p class="win-footnote">
+          THIS LITTLE GAME IS ONLY ONE PIECE OF MY HEART
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ACCESSIBLE GAME ANNOUNCEMENTS -->
+    <p class="sr-only"
+       id="gameAnnouncement"
+       aria-live="polite"
+       aria-atomic="true"></p>
+
+  </main>
+</body>
+</html>
