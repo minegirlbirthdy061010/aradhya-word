@@ -1,14 +1,11 @@
 /* ==========================================================
    PART 11 — BE READY FOR THAT DAY ❤️
-   JAVASCRIPT PART 1 OF 2
-   Scene Controller • Text Reveals • Visual Effects
+   COMPLETE JAVASCRIPT
    File: part11.js
    ========================================================== */
 
 (() => {
   "use strict";
-
-  /* ---------- PREVENT DOUBLE INITIALIZATION ---------- */
 
   if (window.__ARADHYA_PART11_INITIALIZED__) return;
   window.__ARADHYA_PART11_INITIALIZED__ = true;
@@ -24,12 +21,11 @@
   const experience = $("#futureExperience");
 
   if (!experience) {
-    console.error(
-      "Part 11: #futureExperience not found. Check part11.html."
-    );
+    console.error("Part 11: #futureExperience not found.");
     return;
   }
 
+  const progress = $("#futureProgress");
   const progressFill = $("#futureProgressFill");
   const status = $("#futureStatus");
   const endingOverlay = $("#futureEndingOverlay");
@@ -42,10 +38,10 @@
     $("#meetingScene"),
     $("#untilScene"),
     $("#finalScene")
-  ].filter(Boolean);
+  ];
 
-  if (!scenes.length) {
-    console.error("Part 11: No scene elements were found.");
+  if (scenes.some((scene) => !scene)) {
+    console.error("Part 11: One or more scenes are missing.");
     return;
   }
 
@@ -54,83 +50,78 @@
   let currentSceneIndex = 0;
   let isTransitioning = false;
   let isEnding = false;
-  let activeTimers = [];
-  let effectTimers = [];
   let sceneRunId = 0;
+
+  let activeTimers = [];
+  let effectTimeouts = [];
+  let petalInterval = null;
 
   const reducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
-  const wait = (ms) =>
-    new Promise((resolve) => {
+  function wait(ms) {
+    return new Promise((resolve) => {
       const timer = window.setTimeout(resolve, ms);
       activeTimers.push(timer);
     });
+  }
 
   function clearSceneTimers() {
-    activeTimers.forEach(window.clearTimeout);
+    activeTimers.forEach((timer) => window.clearTimeout(timer));
     activeTimers = [];
   }
 
   function clearEffectTimers() {
-    effectTimers.forEach(window.clearTimeout);
-    effectTimers = [];
+    effectTimeouts.forEach((timer) => window.clearTimeout(timer));
+    effectTimeouts = [];
+
+    if (petalInterval !== null) {
+      window.clearInterval(petalInterval);
+      petalInterval = null;
+    }
   }
 
   function setStatus(message = "") {
     if (status) status.textContent = message;
   }
 
+  /* ---------- PROGRESS ---------- */
+
   function updateProgress(index) {
-    if (!progressFill) return;
+    const percentage = scenes.length <= 1
+      ? 100
+      : Math.round((index / (scenes.length - 1)) * 100);
 
-    const percentage =
-      scenes.length <= 1
-        ? 100
-        : (index / (scenes.length - 1)) * 100;
+    if (progressFill) {
+      progressFill.style.width = `${percentage}%`;
+    }
 
-    progressFill.style.width = `${percentage}%`;
+    if (progress) {
+      progress.setAttribute("aria-valuenow", String(percentage));
+    }
   }
 
-  /* ---------- SCENE TEXT PREPARATION ---------- */
+  /* ---------- SCENE TEXT ---------- */
 
-  function prepareSceneLines(scene) {
-    if (!scene) return [];
-
-    const lines = $$(".scene-line[data-sequence-line]", scene);
-
-    lines.forEach((line) => {
-      line.classList.remove("line-hidden", "line-visible");
-      line.style.removeProperty("animation-delay");
-      line.setAttribute("aria-hidden", "false");
-    });
-
-    return lines;
+  function getSceneLines(scene) {
+    return $$("[data-sequence-line]", scene);
   }
 
   function hideSceneLines(scene) {
-    const lines = prepareSceneLines(scene);
-
-    if (reducedMotion) return lines;
+    const lines = getSceneLines(scene);
 
     lines.forEach((line) => {
       line.classList.remove("line-visible");
-      line.classList.add("line-hidden");
-      line.setAttribute("aria-hidden", "true");
+      line.classList.toggle("line-hidden", !reducedMotion);
+      line.setAttribute("aria-hidden", String(!reducedMotion));
     });
 
     return lines;
   }
 
-  /* ---------- REVEAL TEXT SEQUENTIALLY ---------- */
-
   async function revealSceneLines(scene, runId) {
     const lines = hideSceneLines(scene);
-
-    if (!lines.length) return;
-
-    const lineDelay = reducedMotion ? 0 : 620;
 
     for (let i = 0; i < lines.length; i += 1) {
       if (runId !== sceneRunId || isEnding) return;
@@ -141,8 +132,8 @@
       line.classList.add("line-visible");
       line.setAttribute("aria-hidden", "false");
 
-      if (lineDelay > 0 && i < lines.length - 1) {
-        await wait(lineDelay);
+      if (!reducedMotion && i < lines.length - 1) {
+        await wait(620);
       }
     }
   }
@@ -150,14 +141,7 @@
   /* ---------- BUTTON VISIBILITY ---------- */
 
   function setSceneButtons(scene, visible) {
-    if (!scene) return;
-
-    const buttons = $$(
-      ".future-button",
-      scene
-    );
-
-    buttons.forEach((button) => {
+    $$(".future-button", scene).forEach((button) => {
       button.hidden = !visible;
       button.disabled = !visible;
       button.setAttribute("aria-hidden", String(!visible));
@@ -165,12 +149,10 @@
   }
 
   function getSceneButton(scene) {
-    if (!scene) return null;
-
     return $(".future-button", scene);
   }
 
-  /* ---------- RING BOX ANIMATION ---------- */
+  /* ---------- RING BOX ---------- */
 
   function openRingBox(box) {
     if (!box) return;
@@ -179,9 +161,7 @@
 
     const lid = $(".ring-box-lid, .final-ring-lid", box);
 
-    if (lid) {
-      lid.classList.add("is-open");
-    }
+    if (lid) lid.classList.add("is-open");
   }
 
   function closeRingBox(box) {
@@ -191,43 +171,32 @@
 
     const lid = $(".ring-box-lid, .final-ring-lid", box);
 
-    if (lid) {
-      lid.classList.remove("is-open");
-    }
+    if (lid) lid.classList.remove("is-open");
   }
 
   async function runSceneVisuals(scene, runId) {
-    if (!scene || runId !== sceneRunId) return;
+    let box = null;
 
     if (scene.id === "openingScene") {
-      closeRingBox($("#openingRingBox"));
-      await wait(reducedMotion ? 0 : 450);
-
-      if (runId !== sceneRunId) return;
-
-      openRingBox($("#openingRingBox"));
+      box = $("#openingRingBox");
+    } else if (scene.id === "ringScene") {
+      box = $("#heroRingBox");
+    } else if (scene.id === "finalScene") {
+      box = $("#finalRingBox");
     }
 
-    if (scene.id === "ringScene") {
-      closeRingBox($("#heroRingBox"));
-      await wait(reducedMotion ? 0 : 350);
+    if (!box) return;
 
-      if (runId !== sceneRunId) return;
+    closeRingBox(box);
 
-      openRingBox($("#heroRingBox"));
-    }
+    await wait(reducedMotion ? 0 : 450);
 
-    if (scene.id === "finalScene") {
-      closeRingBox($("#finalRingBox"));
-      await wait(reducedMotion ? 0 : 450);
+    if (runId !== sceneRunId || isEnding) return;
 
-      if (runId !== sceneRunId) return;
-
-      openRingBox($("#finalRingBox"));
-    }
+    openRingBox(box);
   }
 
-  /* ---------- ENTER A SCENE ---------- */
+  /* ---------- ENTER SCENE ---------- */
 
   async function enterScene(index) {
     if (isEnding || index < 0 || index >= scenes.length) return;
@@ -242,15 +211,13 @@
 
     const scene = scenes[index];
 
-    scenes.forEach((item, sceneIndex) => {
-      const active = sceneIndex === index;
+    scenes.forEach((item, itemIndex) => {
+      const active = itemIndex === index;
 
       item.classList.toggle("active", active);
       item.setAttribute("aria-hidden", String(!active));
 
-      if (!active) {
-        setSceneButtons(item, false);
-      }
+      if (!active) setSceneButtons(item, false);
     });
 
     updateProgress(index);
@@ -287,16 +254,12 @@
   async function goForward() {
     if (isTransitioning || isEnding) return;
 
-    if (currentSceneIndex >= scenes.length - 1) {
-      return;
-    }
+    if (currentSceneIndex >= scenes.length - 1) return;
 
-    const nextIndex = currentSceneIndex + 1;
-
-    await enterScene(nextIndex);
+    await enterScene(currentSceneIndex + 1);
   }
 
-  /* ---------- CONNECT OPENING BUTTON ---------- */
+  /* ---------- OPENING BUTTON ---------- */
 
   const openingButton = $("#continueFuture");
 
@@ -305,6 +268,7 @@
       if (isTransitioning || isEnding) return;
 
       openingButton.disabled = true;
+
       await goForward();
 
       if (!isEnding && openingButton.isConnected) {
@@ -313,13 +277,14 @@
     });
   }
 
-  /* ---------- CONNECT ALL NEXT-SCENE BUTTONS ---------- */
+  /* ---------- NEXT-SCENE BUTTONS ---------- */
 
   $$("[data-next-scene]").forEach((button) => {
     button.addEventListener("click", async () => {
       if (isTransitioning || isEnding) return;
 
       button.disabled = true;
+
       await goForward();
 
       if (!isEnding && button.isConnected) {
@@ -328,95 +293,109 @@
     });
   });
 
-  /* ---------- CONNECT FINAL TRANSITION BUTTON ---------- */
+  /* ---------- COMPLETE ENDING ---------- */
+
+  async function beginEnding() {
+    // IMPORTANT: Do not set isEnding or isTransitioning
+    // before this function is called from the button handler.
+    if (isEnding || isTransitioning) return;
+
+    isEnding = true;
+    isTransitioning = true;
+
+    clearSceneTimers();
+    setStatus("");
+
+    const finalRingBox = $("#finalRingBox");
+    const warmLight = $(".future-ending-warm-light");
+    const finalButton = $("#continueToPart12");
+
+    if (finalButton) {
+      finalButton.disabled = true;
+      finalButton.style.pointerEvents = "none";
+    }
+
+    // Close the ring box.
+    closeRingBox(finalRingBox);
+
+    await wait(reducedMotion ? 100 : 900);
+
+    // Fade the final scene into the ending overlay.
+    experience.classList.add("is-ending");
+
+    if (endingOverlay) {
+      endingOverlay.classList.add("active");
+      endingOverlay.setAttribute("aria-hidden", "false");
+      endingOverlay.style.visibility = "visible";
+      endingOverlay.style.opacity = "1";
+      endingOverlay.style.pointerEvents = "auto";
+    }
+
+    if (endingText) {
+      endingText.textContent = "Until then… ❤️";
+      endingText.style.opacity = "1";
+    }
+
+    // Keep the message visible for a moment.
+    await wait(reducedMotion ? 300 : 2200);
+
+    // Fade out the message.
+    if (endingText) {
+      endingText.style.transition = reducedMotion
+        ? "none"
+        : "opacity 900ms ease";
+
+      endingText.style.opacity = "0";
+    }
+
+    await wait(reducedMotion ? 0 : 700);
+
+    // Fade the golden light and overlay.
+    if (warmLight) {
+      warmLight.style.transition = reducedMotion
+        ? "none"
+        : "opacity 1200ms ease, transform 1400ms ease";
+
+      warmLight.style.opacity = "0";
+    }
+
+    if (endingOverlay) {
+      endingOverlay.style.transition = reducedMotion
+        ? "none"
+        : "opacity 1200ms ease";
+
+      endingOverlay.style.opacity = "0";
+    }
+
+    await wait(reducedMotion ? 100 : 1400);
+
+    // Automatically navigate to Part 12.
+    window.location.href = "part12.html";
+  }
+
+  /* ---------- FINAL BUTTON: FIXED ---------- */
 
   const finalButton = $("#continueToPart12");
 
   if (finalButton) {
     finalButton.addEventListener("click", async () => {
-      if (isTransitioning || isEnding) return;
+      if (isEnding || isTransitioning) return;
 
       if (currentSceneIndex !== scenes.length - 1) return;
 
-      isEnding = true;
-      isTransitioning = true;
-      finalButton.disabled = true;
-
+      /*
+       * FIX:
+       * Do NOT set isEnding = true here.
+       * Do NOT set isTransitioning = true here.
+       * beginEnding() sets both flags itself.
+       */
       await beginEnding();
     });
+  } else {
+    console.error(
+      "Part 11: #continueToPart12 button was not found."
+    );
   }
-
-  /* ---------- ENDING PLACEHOLDER ---------- */
-
-  async function beginEnding() {
-  if (isEnding || isTransitioning) return;
-
-  isEnding = true;
-  isTransitioning = true;
-
-  clearSceneTimers();
-  setStatus("");
-
-  const finalRingBox = $("#finalRingBox");
-  const warmLight = $(".future-ending-warm-light");
-  const finalButton = $("#continueToPart12");
-
-  if (finalButton) {
-    finalButton.disabled = true;
-    finalButton.style.pointerEvents = "none";
-  }
-
-  // Close the ring box.
-  if (finalRingBox) {
-    closeRingBox(finalRingBox);
-  }
-
-  await wait(900);
-
-  // Reveal the cinematic ending.
-  if (experience) {
-    experience.classList.add("is-ending");
-  }
-
-  if (endingOverlay) {
-    endingOverlay.classList.add("active");
-    endingOverlay.setAttribute("aria-hidden", "false");
-    endingOverlay.style.opacity = "1";
-    endingOverlay.style.visibility = "visible";
-  }
-
-  if (endingText) {
-    endingText.textContent = "Until then… ❤️";
-    endingText.style.opacity = "1";
-  }
-
-  await wait(2200);
-
-  // Fade out the final message.
-  if (endingText) {
-    endingText.style.transition = "opacity 900ms ease";
-    endingText.style.opacity = "0";
-  }
-
-  await wait(700);
-
-  // Fade the golden light into darkness.
-  if (warmLight) {
-    warmLight.style.transition =
-      "opacity 1200ms ease, transform 1400ms ease";
-    warmLight.style.opacity = "0";
-  }
-
-  if (endingOverlay) {
-    endingOverlay.style.transition = "opacity 1200ms ease";
-    endingOverlay.style.opacity = "0";
-  }
-
-  await wait(1400);
-
-  // Open Part 12.
-  window.location.href = "part12.html";
-}
 
   /* ---------- FAIRY LIGHTS ---------- */
 
@@ -459,7 +438,7 @@
     layer.appendChild(fragment);
   }
 
-  /* ---------- BOKEH PARTICLES ---------- */
+  /* ---------- BOKEH ---------- */
 
   function createBokeh() {
     const layer = $(".bokeh-layer");
@@ -476,30 +455,11 @@
 
       particle.className = "bokeh";
 
-      particle.style.setProperty(
-        "--x",
-        `${Math.random() * 100}%`
-      );
-
-      particle.style.setProperty(
-        "--y",
-        `${12 + Math.random() * 82}%`
-      );
-
-      particle.style.setProperty(
-        "--size",
-        `${4 + Math.random() * 12}px`
-      );
-
-      particle.style.setProperty(
-        "--duration",
-        `${7 + Math.random() * 8}s`
-      );
-
-      particle.style.setProperty(
-        "--delay",
-        `${Math.random() * -12}s`
-      );
+      particle.style.setProperty("--x", `${Math.random() * 100}%`);
+      particle.style.setProperty("--y", `${12 + Math.random() * 82}%`);
+      particle.style.setProperty("--size", `${4 + Math.random() * 12}px`);
+      particle.style.setProperty("--duration", `${7 + Math.random() * 8}s`);
+      particle.style.setProperty("--delay", `${Math.random() * -12}s`);
 
       fragment.appendChild(particle);
     }
@@ -524,35 +484,12 @@
 
       particle.className = "dust-particle";
 
-      particle.style.setProperty(
-        "--x",
-        `${Math.random() * 100}%`
-      );
-
-      particle.style.setProperty(
-        "--y",
-        `${30 + Math.random() * 70}%`
-      );
-
-      particle.style.setProperty(
-        "--size",
-        `${1.5 + Math.random() * 2.5}px`
-      );
-
-      particle.style.setProperty(
-        "--duration",
-        `${5 + Math.random() * 7}s`
-      );
-
-      particle.style.setProperty(
-        "--delay",
-        `${Math.random() * -10}s`
-      );
-
-      particle.style.setProperty(
-        "--drift",
-        `${-25 + Math.random() * 50}px`
-      );
+      particle.style.setProperty("--x", `${Math.random() * 100}%`);
+      particle.style.setProperty("--y", `${30 + Math.random() * 70}%`);
+      particle.style.setProperty("--size", `${1.5 + Math.random() * 2.5}px`);
+      particle.style.setProperty("--duration", `${5 + Math.random() * 7}s`);
+      particle.style.setProperty("--delay", `${Math.random() * -10}s`);
+      particle.style.setProperty("--drift", `${-25 + Math.random() * 50}px`);
 
       fragment.appendChild(particle);
     }
@@ -571,30 +508,11 @@
 
     petal.className = "petal";
 
-    petal.style.setProperty(
-      "--x",
-      `${Math.random() * 100}%`
-    );
-
-    petal.style.setProperty(
-      "--size",
-      `${7 + Math.random() * 10}px`
-    );
-
-    petal.style.setProperty(
-      "--duration",
-      `${9 + Math.random() * 8}s`
-    );
-
-    petal.style.setProperty(
-      "--drift",
-      `${-80 + Math.random() * 160}px`
-    );
-
-    petal.style.setProperty(
-      "--spin",
-      `${160 + Math.random() * 360}deg`
-    );
+    petal.style.setProperty("--x", `${Math.random() * 100}%`);
+    petal.style.setProperty("--size", `${7 + Math.random() * 10}px`);
+    petal.style.setProperty("--duration", `${9 + Math.random() * 8}s`);
+    petal.style.setProperty("--drift", `${-80 + Math.random() * 160}px`);
+    petal.style.setProperty("--spin", `${160 + Math.random() * 360}deg`);
 
     layer.appendChild(petal);
 
@@ -602,7 +520,7 @@
       petal.remove();
     }, 19000);
 
-    effectTimers.push(cleanup);
+    effectTimeouts.push(cleanup);
   }
 
   function startPetals() {
@@ -611,11 +529,9 @@
     createPetal();
     createPetal();
 
-    const timer = window.setInterval(() => {
+    petalInterval = window.setInterval(() => {
       if (!isEnding) createPetal();
     }, 1800);
-
-    effectTimers.push(timer);
   }
 
   /* ---------- INITIALIZATION ---------- */
@@ -632,15 +548,15 @@
       setSceneButtons(scene, false);
     });
 
-    /*
-      Keep Part 1 visible on startup.
-      Text and the first button are activated through enterScene().
-    */
+    if (endingOverlay) {
+      endingOverlay.classList.remove("active");
+      endingOverlay.setAttribute("aria-hidden", "true");
+    }
 
     enterScene(0);
   }
 
-  /* ---------- CLEANUP ON PAGE EXIT ---------- */
+  /* ---------- CLEANUP ---------- */
 
   window.addEventListener("pagehide", () => {
     clearSceneTimers();
@@ -650,13 +566,4 @@
   /* ---------- START ---------- */
 
   initialize();
-
-  /*
-    JavaScript Part 2 adds:
-    - Final warm-light fade timing
-    - Closing ring-box moment
-    - Smooth black fade
-    - Reliable navigation to part12.html
-    - Final accessibility and cleanup polish
-  */
 })();
