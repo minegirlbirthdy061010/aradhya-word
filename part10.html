@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f8e7d2">
+  <meta name="description" content="A little collection of gifts saved for Aradhya, until the day we meet.">
+  <title>For Aradhya ❤️ | A Little Gift Room</title>
+  <link rel="stylesheet" href="part10.css">
+</head>
+
+<body>
+<main id="giftExperience" class="gift-experience" data-next-page="part11.html">
+
+  <!-- WARM MAGICAL BACKGROUND -->
+  <div class="room-background" aria-hidden="true">
+    <div class="warm-wall"></div>
+    <div class="window-light"></div>
+    <div class="fairy-lights fairy-lights-left"></div>
+    <div class="fairy-lights fairy-lights-right"></div>
+    <div class="room-bokeh" id="roomBokeh"></div>
+    <div class="room-floor"></div>
+    <div class="room-vignette"></div>
+  </div>
+
+  <div id="goldenDust" class="golden-dust" aria-hidden="true"></div>
+  <div id="rosePetals" class="rose-petals" aria-hidden="true"></div>
+
+  <!-- PROGRESS -->
+  <header class="gift-header">
+    <p class="eyebrow">A LITTLE WORLD MADE FOR YOU</p>
+    <div class="progress-track" role="progressbar"
+         aria-label="Gift journey progress"
+         aria-valuemin="0" aria-valuemax="100" aria-valuenow="5">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
+    <p id="progressLabel" class="progress-label">A little surprise awaits… ✨</p>
+  </header>
+
+  <!-- TABLE -->
+  <div class="wooden-table" aria-hidden="true">
+    <div class="table-top"></div>
+    <div class="table-front"></div>
+    <div class="table-leg table-leg-left"></div>
+    <div class="table-leg table-leg-right"></div>
+  </div>
+
+  <!-- SCENE 1: GIFT BOX -->
+  <section id="giftOpening" class="gift-scene active"
+           aria-labelledby="openingTitle">
+    <div class="scene-content opening-content">
+      <div class="opening-intro">
+        <p class="scene-kicker">SOMETHING I SAVED FOR YOU</p>
+        <h1 id="openingTitle">For Aradhya <span>❤️</span></h1>
+        <p class="opening-line">Some things are meant to be given…</p>
+        <p class="opening-line opening-line-delay">
+          …and some things are meant to be waited for.
+        </p>
+      </div>
+
+      <button id="openMainBox" class="gift-box-button" type="button">
+        <span class="gift-box-halo" aria-hidden="true"></span>
+        <span class="gift-box-visual" aria-hidden="true">
+          <span class="gift-box-lid">
+            <span class="gift-box-bow"></span>
+          </span>
+          <span class="gift-box-base">
+            <span class="gift-box-ribbon"></span>
+            <span class="gift-box-label">For Aradhya ❤️</span>
+          </span>
+        </span>
+        <span class="gift-box-caption">A little box full of feelings 🎁</span>
+      </button>
+
+      <p class="scene-hint">Take your time. This is all for you.</p>
+    </div>
+  </section>
+
+  <!-- SCENE 2: NINE LITTLE GIFTS -->
+  <section id="littleGifts" class="gift-scene"
+           aria-labelledby="littleGiftsTitle" aria-hidden="true">
+    <div class="scene-content gifts-content">
+      <p class="scene-kicker">LITTLE THINGS, BIG FEELINGS</p>
+      <h2 id="littleGiftsTitle">Picked with you in mind ✨</h2>
+      <p class="scene-description">Each little thing has a reason for being here.</p>
+
+      <div id="giftObjectStage" class="gift-object-stage"
+           aria-live="polite" aria-atomic="true">
+        <div class="gift-object-placeholder" aria-hidden="true">🎁</div>
+      </div>
+
+      <div class="gift-information">
+        <p id="giftNumber" class="gift-number">GIFT 01 OF 09</p>
+        <h3 id="giftItemName" class="gift-item-name">A little surprise</h3>
+        <p id="giftItemNote" class="gift-item-note">
+          Picked this thinking of you. ❤️
+        </p>
+      </div>
+
+      <div id="giftDots" class="gift-dots" aria-label="Gift progress"></div>
+
+      <button id="nextGiftButton" class="glass-button" type="button">
+        Reveal the next gift ✨
+      </button>
+      <p id="giftStatus" class="scene-hint" aria-live="polite">
+        One gift at a time, just for you. 💗
+      </p>
+    </div>
+  </section>
+
+  <!-- SCENE 3: HANDMADE GIFTS -->
+  <section id="handmadeGifts" class="gift-scene"
+           aria-labelledby="handmadeTitle" aria-hidden="true">
+    <div class="scene-content handmade-content">
+      <p class="scene-kicker">MADE BY HAND, KEPT WITH LOVE</p>
+      <h2 id="handmadeTitle">Some things came from my heart. 💌</h2>
+      <p class="scene-description">Not everything here was bought.</p>
+
+      <div class="handmade-gallery">
+
+        <article class="handmade-card">
+          <div class="handmade-art envelopes-art" aria-hidden="true">
+            <span>💌</span><span>✉️</span><span>💌</span>
+          </div>
+          <h3>Open When Letters</h3>
+          <p>Little letters, saved for different kinds of days.</p>
+          <button id="spreadLettersButton"
+                  class="glass-button secondary-button" type="button">
+            See the letters 💌
+          </button>
+          <div id="lettersFan" class="handmade-preview" hidden
+               aria-live="polite"></div>
+        </article>
+
+        <article class="handmade-card">
+          <div class="handmade-art vintage-art" aria-hidden="true">
+            <span>📜</span><span class="tiny-sparkle">✨</span>
+          </div>
+          <h3>Vintage Love Letter</h3>
+          <p>A little piece of my heart, written by hand.</p>
+          <button id="unfoldVintageButton"
+                  class="glass-button secondary-button" type="button">
+            Open the letter 📜
+          </button>
+          <div id="vintagePreview" class="handmade-preview" hidden
+               aria-live="polite"></div>
+        </article>
+
+        <article class="handmade-card">
+          <div class="handmade-art long-letter-art" aria-hidden="true">
+            <span>📝</span><span class="tiny-sparkle">💗</span>
+          </div>
+          <h3>The Long Pull Letter</h3>
+          <p>More than a page of things I wanted to say.</p>
+          <button id="pullLetterButton"
+                  class="glass-button secondary-button" type="button">
+            Unfold it 📝
+          </button>
+          <div id="pullLetterPreview" class="handmade-preview" hidden
+               aria-live="polite"></div>
+        </article>
+
+      </div>
+
+      <button id="nextHandmadeButton" class="glass-button" type="button">
+        Continue ❤️
+      </button>
+    </div>
+  </section>
+
+  <!-- SCENE 4: WHY THESE GIFTS -->
+  <section id="whyDifferent" class="gift-scene"
+           aria-labelledby="differentTitle" aria-hidden="true">
+    <div class="scene-content emotional-content">
+      <div class="soft-glow-orb" aria-hidden="true">✨</div>
+      <p class="scene-kicker">A LITTLE THOUGHT</p>
+      <h2 id="differentTitle">These aren't just things I bought…</h2>
+      <p class="emotional-line">I made some of them myself.</p>
+      <p class="emotional-line">
+        Because some feelings are better written by hand. ❤️
+      </p>
+      <button id="nextDifferentButton" class="glass-button" type="button">
+        There's something else… ✨
+      </button>
+    </div>
+  </section>
+
+  <!-- SCENE 5: REALITY -->
+  <section id="realPart" class="gift-scene"
+           aria-labelledby="realPartTitle" aria-hidden="true">
+    <div class="scene-content emotional-content">
+      <div class="soft-glow-orb" aria-hidden="true">🎁</div>
+      <p class="scene-kicker">ONE LITTLE PROBLEM</p>
+      <h2 id="realPartTitle">But there's one little problem…</h2>
+      <p class="emotional-line">I can't give these to you through a screen.</p>
+      <p class="emotional-line">Because these are actually waiting for you. ❤️</p>
+      <button id="nextRealPartButton" class="glass-button" type="button">
+        I understand… ❤️
+      </button>
+    </div>
+  </section>
+
+  <!-- SCENE 6: WHEN WE MEET -->
+  <section id="whenWeMeet" class="gift-scene"
+           aria-labelledby="whenWeMeetTitle" aria-hidden="true">
+    <div class="scene-content emotional-content">
+      <p class="scene-kicker">SAVED FOR OUR DAY</p>
+      <h2 id="whenWeMeetTitle">Ye sab main aapko…</h2>
+      <p class="emotional-line">…jab bhi hum milenge…</p>
+      <p class="emotional-line emotional-highlight">…tab khud dunga. ❤️</p>
+      <div class="promise-lines">
+        <p>No delivery.</p>
+        <p>No courier.</p>
+        <p class="promise-highlight">Just me, giving them to you. 💗</p>
+      </div>
+      <button id="nextMeetButton" class="glass-button" type="button">
+        Keep them safe for now 🎁
+      </button>
+    </div>
+  </section>
+
+  <!-- SCENE 7: GIFTS SAVED -->
+  <section id="everythingSaved" class="gift-scene"
+           aria-labelledby="savedTitle" aria-hidden="true">
+    <div class="scene-content saved-content">
+      <p class="scene-kicker">UNTIL THE DAY WE MEET</p>
+      <h2 id="savedTitle">Every little thing, safe with me. ❤️</h2>
+      <div id="savedGiftDisplay" class="saved-gift-display"
+           aria-hidden="true">🎁</div>
+      <div id="savedItems" class="saved-items"></div>
+      <p id="savingMessage" class="saving-message">
+        Putting everything back, one little memory at a time…
+      </p>
+      <button id="closeGiftBoxButton" class="glass-button" type="button">
+        Keep them safe ❤️
+      </button>
+    </div>
+  </section>
+
+  <!-- SCENE 8: FINAL GIFT MESSAGE -->
+  <section id="finalGiftMessage" class="gift-scene"
+           aria-labelledby="finalMessageTitle" aria-hidden="true">
+    <div class="scene-content final-gift-content">
+      <div class="final-box-illustration" aria-hidden="true">
+        <span class="final-box-glow"></span>
+        <span class="final-box-emoji">🎁</span>
+        <span class="final-box-sparkle sparkle-one">✨</span>
+        <span class="final-box-sparkle sparkle-two">💫</span>
+      </div>
+      <p class="scene-kicker">UNTIL OUR DAY</p>
+      <h2 id="finalMessageTitle">
+        Waiting for the day I can finally give these to you. ❤️
+      </h2>
+      <p class="final-message-secondary">Until then… they're safe with me.</p>
+      <p class="gift-signature">— For Aradhya ❤️</p>
+      <button id="openNextLetterButton" class="glass-button" type="button">
+        There's one more thing… 💌
+      </button>
+    </div>
+  </section>
+
+  <!-- SCENE 9: LETTER TEASER -->
+  <section id="letterTransition" class="gift-scene letter-transition"
+           aria-labelledby="transitionTitle" aria-hidden="true">
+    <div class="scene-content letter-transition-content">
+      <div class="transition-atmosphere" aria-hidden="true">
+        <span class="transition-glow"></span>
+        <span class="transition-particle particle-one">✨</span>
+        <span class="transition-particle particle-two">✦</span>
+        <span class="transition-particle particle-three">💫</span>
+      </div>
+
+      <div class="transition-letter-stage">
+        <div id="transitionLetter" class="transition-letter">
+          <div class="letter-shadow" aria-hidden="true"></div>
+          <div class="letter-paper">
+            <div class="letter-paper-border" aria-hidden="true"></div>
+            <div class="letter-top-decoration" aria-hidden="true">
+              <span>✦</span><span>❦</span><span>✦</span>
+            </div>
+            <div class="letter-seal" aria-hidden="true"><span>❤️</span></div>
+            <p class="letter-label">A LITTLE SOMETHING MORE</p>
+            <div class="letter-bottom-decoration" aria-hidden="true">❦</div>
+          </div>
+          <div class="letter-light-beam" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="transition-copy">
+        <p class="scene-kicker">BEFORE YOU GO…</p>
+        <h2 id="transitionTitle">There is still something I want to tell you…</h2>
+        <p class="transition-subtitle">❤️</p>
+      </div>
+
+      <button id="continueToPart11" class="glass-button" type="button">
+        Continue our story ✨
+      </button>
+      <p id="part11Status" class="scene-hint" aria-live="polite"></p>
+    </div>
+  </section>
+
+</main>
+
+<script src="part10.js" defer></script>
+</body>
+</html>

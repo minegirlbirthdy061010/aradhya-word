@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#68414e">
+  <meta name="description" content="A little promise for a future day. A special chapter made for Aradhya.">
+
+  <title>Be Ready for That Day ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="part11.css">
+  <script src="part11.js" defer></script>
+</head>
+
+<body>
+  <main class="future-experience" id="futureExperience">
+
+    <!-- DREAMY EVENING BACKGROUND -->
+    <div class="future-world" aria-hidden="true">
+      <div class="evening-sky"></div>
+      <div class="garden-blur"></div>
+      <div class="distant-garden"></div>
+      <div class="warm-horizon"></div>
+      <div class="vignette"></div>
+      <div class="fairy-lights"></div>
+      <div class="bokeh-layer"></div>
+      <div class="petal-layer" id="petalLayer"></div>
+      <div class="gold-dust" id="goldDust"></div>
+    </div>
+
+    <!-- TOP BRANDING -->
+    <header class="future-header">
+      <p class="future-brand">A LITTLE PIECE OF OUR FUTURE</p>
+
+      <div
+        class="future-progress"
+        role="progressbar"
+        aria-label="Story progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+        id="futureProgress"
+      >
+        <span class="future-progress-fill" id="futureProgressFill"></span>
+      </div>
+    </header>
+
+    <!-- SCENE 1: THE OPENING -->
+    <section
+      class="future-scene opening-scene active"
+      id="openingScene"
+      aria-hidden="false"
+    >
+      <div class="opening-inner scene-inner">
+
+        <div class="opening-light-orb" aria-hidden="true"></div>
+
+        <p class="scene-eyebrow">SOMETHING FOR THE FUTURE</p>
+
+        <div class="opening-ring-stage">
+          <div class="opening-ring-box ring-box" id="openingRingBox">
+            <div class="ring-box-base"></div>
+
+            <div class="ring-box-lid">
+              <span class="box-lid-highlight"></span>
+            </div>
+
+            <div class="ring-inner">
+              <div class="ring-glow"></div>
+              <div class="ring-band"></div>
+              <div class="ring-stone"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="opening-copy scene-copy">
+          <p class="scene-line" data-sequence-line>
+            Ek baat aapse kehni hai…
+          </p>
+
+          <p class="scene-line" data-sequence-line>
+            Aaj nahi…
+          </p>
+
+          <p class="scene-line" data-sequence-line>
+            Abhi nahi…
+          </p>
+
+          <p class="scene-line highlight-line" data-sequence-line>
+            Par jis din hum saamne milenge… <span>❤️</span>
+          </p>
+        </div>
+
+        <button class="future-button" id="continueFuture" type="button">
+          Continue our story <span aria-hidden="true">✧</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- SCENE 2: THE RING REVEAL -->
+    <section
+      class="future-scene ring-scene"
+      id="ringScene"
+      aria-hidden="true"
+    >
+      <div class="scene-inner ring-scene-inner">
+
+        <p class="scene-eyebrow">A LITTLE PROMISE</p>
+
+        <div class="hero-ring-stage">
+          <div class="hero-ring-box ring-box" id="heroRingBox">
+            <div class="ring-box-base"></div>
+
+            <div class="ring-box-lid">
+              <span class="box-lid-highlight"></span>
+            </div>
+
+            <div class="ring-inner">
+              <div class="ring-glow"></div>
+              <div class="ring-band"></div>
+              <div class="ring-stone"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ring-copy scene-copy">
+          <p class="scene-line" data-sequence-line>
+            Us din mere paas aapke liye sirf ek ring nahi hogi…
+          </p>
+
+          <p class="scene-line" data-sequence-line>
+            Ek sawaal bhi hoga…
+          </p>
+
+          <p class="scene-line" data-sequence-line>
+            Wahi sawaal…
+          </p>
+
+          <p class="scene-line highlight-line" data-sequence-line>
+            Jo main aapki aankhon mein dekhkar poochna chahta hoon. ❤️
+          </p>
+        </div>
+
+        <button class="future-button" type="button" data-next-scene>
+          And then… <span aria-hidden="true">✧</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- SCENE 3: THE FUTURE QUESTION -->
+    <section
+      class="future-scene question-scene"
+      id="questionScene"
+      aria-hidden="true"
+    >
+      <div class="scene-inner question-inner">
+
+        <div class="question-halo" aria-hidden="true"></div>
+
+        <p class="scene-eyebrow">A QUESTION FOR ANOTHER DAY</p>
+
+        <div class="question-copy scene-copy">
+          <h1 class="scene-line question-title" data-sequence-line>
+            Will you be mine…
+          </h1>
+
+          <p class="scene-line" data-sequence-line>
+            not just for a moment…
+          </p>
+
+          <p class="scene-line" data-sequence-line>
+            not just for a few years…
+          </p>
+
+          <p class="scene-line question-highlight" data-sequence-line>
+            but for forever? <span>❤️</span>
+          </p>
+
+          <div class="question-divider" aria-hidden="true"></div>
+
+          <p class="scene-line hindi-question" data-sequence-line>
+            Kya aap meri zindagi ka woh hissa banengi…
+          </p>
+
+          <p class="scene-line hindi-question" data-sequence-line>
+            jise main kabhi khatam nahi hone dena chahta?
+          </p>
+        </div>
+
+        <button class="future-button" type="button" data-next-scene>
+          There's something more <span aria-hidden="true">✧</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- SCENE 4: WHEN WE MEET -->
+    <section
+      class="future-scene meeting-scene"
+      id="meetingScene"
+      aria-hidden="true"
+    >
+      <div class="scene-inner meeting-inner">
+
+        <div class="meeting-sunset" aria-hidden="true"></div>
+        <div class="meeting-garden-glow" aria-hidden="true"></div>
+
+        <p class="scene-eyebrow">WHEN WE FINALLY MEET</p>
+
+        <div class="meeting-copy scene-copy">
+          <p class="scene-line" data-sequence-line>
+            Us din main aapse ye sab saamne kahunga…
+          </p>
+
+          <p class="scene-line" data-sequence-line>
+            Aapki aankhon mein dekhkar.
+          </p>
+
+          <p class="scene-line" data-sequence-line>
+            Aapka haath pakadkar.
+          </p>
+
+          <p class="scene-line" data-sequence-line>
+            Aur phir…
+          </p>
+
+          <p class="scene-line highlight-line" data-sequence-line>
+            Aapke jawab ka intezaar karunga. ❤️
+          </p>
+        </div>
+
+        <button class="future-button" type="button" data-next-scene>
+          Until that day… <span aria-hidden="true">✧</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- SCENE 5: BE READY FOR THAT DAY -->
+    <section
+      class="future-scene until-scene"
+      id="untilScene"
+      aria-hidden="true"
+    >
+      <div class="scene-inner until-inner">
+
+        <p class="scene-eyebrow">JUST BETWEEN US</p>
+
+        <div class="until-copy scene-copy">
+          <p class="scene-line" data-sequence-line>
+            Bas tab tak…
+          </p>
+
+          <p class="scene-line" data-sequence-line>
+            thoda sa intezaar kijiye.
+          </p>
+
+          <p class="scene-line" data-sequence-line>
+            Aur haan…
+          </p>
+
+          <h2 class="scene-line until-title" data-sequence-line>
+            Be ready for that day, Aradhya. <span>❤️</span>
+          </h2>
+        </div>
+
+        <button class="future-button" type="button" data-next-scene>
+          One last thing… <span aria-hidden="true">✧</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- SCENE 6: THE FINAL PROMISE -->
+    <section
+      class="future-scene final-scene"
+      id="finalScene"
+      aria-hidden="true"
+    >
+      <div class="final-inner final-scene-inner">
+
+        <p class="final-eyebrow">UNTIL OUR DAY ARRIVES</p>
+
+        <div class="final-ring-stage">
+          <div class="final-ring-box" id="finalRingBox">
+            <div class="final-ring-lid"></div>
+            <div class="final-ring-glow"></div>
+            <div class="final-ring"></div>
+          </div>
+        </div>
+
+        <div class="final-copy final-scene-copy">
+          <h2 class="final-title scene-line" data-sequence-line>
+            Because one day,
+          </h2>
+
+          <p class="final-description scene-line" data-sequence-line>
+            I'm going to ask you properly. <span>💍❤️</span>
+          </p>
+
+          <div class="final-divider" aria-hidden="true"></div>
+
+          <p class="final-forever-line scene-line" data-sequence-line>
+            And that day…
+          </p>
+
+          <p class="final-description scene-line" data-sequence-line>
+            I want to remember forever.
+          </p>
+        </div>
+
+        <button
+          class="future-button"
+          id="continueToPart12"
+          type="button"
+        >
+          Continue our story <span aria-hidden="true">✧</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- CINEMATIC ENDING OVERLAY -->
+    <div
+      class="future-ending-overlay"
+      id="futureEndingOverlay"
+      aria-hidden="true"
+    >
+      <div
+        class="future-ending-warm-light"
+        aria-hidden="true"
+      ></div>
+
+      <p
+        class="future-ending-text"
+        id="futureEndingText"
+        aria-live="polite"
+      >
+        Until then… ❤️
+      </p>
+    </div>
+
+    <!-- SCREEN READER STATUS -->
+    <p
+      class="future-status"
+      id="futureStatus"
+      role="status"
+      aria-live="polite"
+    ></p>
+
+  </main>
+</body>
+</html>
