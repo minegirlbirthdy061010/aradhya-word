@@ -1859,23 +1859,11 @@ nextButton.addEventListener(
    PREVIOUS PAGE
    ========================================================= */
 
-nextButton.addEventListener(
+previousButton.addEventListener(
     "click",
     () => {
 
-        if (currentPage >= albumData.length - 1) {
-
-            const albumEnding =
-                document.getElementById("albumEnding");
-
-            if (albumEnding) {
-
-                albumEnding.classList.add("show");
-
-            }
-
-            softBeep();
-
+        if (currentPage <= 0) {
             return;
         }
 
@@ -1887,12 +1875,12 @@ nextButton.addEventListener(
         void albumPage.offsetWidth;
 
         albumPage.classList.add(
-            "turn-next"
+            "turn-prev"
         );
 
         setTimeout(() => {
 
-            currentPage++;
+            currentPage--;
 
             updateAlbum();
 
