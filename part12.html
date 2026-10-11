@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#21132f">
+  <meta name="description" content="A special birthday finale made for Aradhya.">
+  <title>Aradhya's World — Grand Finale</title>
+
+  <link rel="stylesheet" href="./part12.css">
+  <script src="./part12.js" defer></script>
+</head>
+
+<body class="grand-finale">
+
+  <!-- BACKGROUND ATMOSPHERE -->
+  <div class="finale-background" aria-hidden="true">
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+    <div class="background-glow glow-three"></div>
+  </div>
+
+  <div id="ambientParticles" aria-hidden="true"></div>
+
+  <!-- MUSIC CONTROL -->
+  <button
+    type="button"
+    id="musicToggle"
+    class="music-toggle"
+    aria-label="Turn background music on or off"
+    aria-pressed="false">
+    ♫ Music Off
+  </button>
+
+  <!-- PROGRESS -->
+  <div class="finale-progress" aria-hidden="true">
+    <div
+      id="finaleProgressBar"
+      class="finale-progress-bar"
+      role="progressbar"
+      aria-label="Grand finale progress"
+      aria-valuemin="0"
+      aria-valuemax="16"
+      aria-valuenow="1">
+    </div>
+  </div>
+
+  <p
+    id="sceneAnnouncement"
+    class="visually-hidden"
+    aria-live="polite">
+    Scene 1 of 16
+  </p>
+
+  <!-- TRANSITION OVERLAY -->
+  <div
+    id="sceneTransition"
+    class="scene-transition"
+    aria-hidden="true">
+  </div>
+
+  <main id="grandFinale" class="grand-finale-main">
+
+    <!-- SCENE 1: OPENING -->
+    <section
+      id="scene-1"
+      class="finale-scene is-active"
+      aria-hidden="false">
+
+      <div class="scene-content">
+        <p class="scene-kicker">A LITTLE WORLD MADE FOR YOU</p>
+
+        <div class="finale-emblem" aria-hidden="true">♡</div>
+
+        <h1>Aradhya's World</h1>
+
+        <p class="scene-description">
+          Every little memory brought us here.
+          And now, one last little surprise awaits you.
+        </p>
+
+        <p class="scene-signature">Made with love, just for you.</p>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="2">
+          Begin the finale <span aria-hidden="true">♡</span>
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 2: THIS WORLD -->
+    <section
+      id="scene-2"
+      class="finale-scene"
+      aria-hidden="true">
+
+      <div class="scene-content">
+        <p class="scene-kicker">A LITTLE REMINDER</p>
+
+        <div class="floating-heart" aria-hidden="true">💗</div>
+
+        <h2>This little world has your name on it.</h2>
+
+        <p class="scene-description">
+          Every detail, every little moment,
+          and every surprise was made especially for you.
+        </p>
+
+        <p class="emotional-highlight">
+          Because you deserve something that feels like you.
+        </p>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="3">
+          One more thing…
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 3: OUR MEMORIES -->
+    <section
+      id="scene-3"
+      class="finale-scene"
+      aria-hidden="true">
+
+      <div class="scene-content">
+        <p class="scene-kicker">LITTLE MOMENTS, BIG FEELINGS</p>
+
+        <h2>Some moments stay with us.</h2>
+
+        <div class="memory-symbols" aria-label="Memories, stars and love">
+          <span aria-hidden="true">✦</span>
+          <span aria-hidden="true">♡</span>
+          <span aria-hidden="true">✧</span>
+        </div>
+
+        <p class="scene-description">
+          The conversations, the laughter,
+          the little things we remember without trying…
+          they all mean more than words can explain.
+        </p>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="4">
+          Keep going
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 4: DISTANCE -->
+    <section
+      id="scene-4"
+      class="finale-scene"
+      aria-hidden="true">
+
+      <div class="scene-content">
+        <p class="scene-kicker">EVEN WHEN WE'RE APART</p>
+
+        <div class="distance-illustration" aria-hidden="true">
+          <span>🌙</span>
+          <span class="distance-heart">♡</span>
+          <span>✨</span>
+        </div>
+
+        <h2>70 KM, but always close.</h2>
+
+        <p class="scene-description">
+          Distance may separate our places,
+          but it cannot measure the value of a memory
+          or the warmth of a thoughtful message.
+        </p>
+
+        <p class="emotional-highlight">
+          Some people feel close, even from far away.
+        </p>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="5">
+          A promise
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 5: A PROMISE -->
+    <section
+      id="scene-5"
+      class="finale-scene"
+      aria-hidden="true">
+
+      <div class="scene-content">
+        <p class="scene-kicker">A LITTLE PROMISE</p>
+
+        <div class="promise-symbol" aria-hidden="true">💍</div>
+
+        <h2>Let the little things always matter.</h2>
+
+        <p class="scene-description">
+          More honest conversations.
+          More laughter over silly things.
+          More patience, understanding and kindness.
+        </p>
+
+        <p class="emotional-highlight">
+          One moment at a time. One memory at a time.
+        </p>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="6">
+          There's more
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 6: OUR STORY -->
+    <section
+      id="scene-6"
+      class="finale-scene"
+      aria-hidden="true">
+
+      <div class="scene-content">
+        <p class="scene-kicker">A STORY STILL UNFOLDING</p>
+
+        <div class="story-stars" aria-hidden="true">✦ ✧ ✦</div>
+
+        <h2>And this is only one chapter.</h2>
+
+        <p class="scene-description">
+          There are still so many songs to hear,
+          stories to share, silly moments to laugh about,
+          and memories waiting to be made.
+        </p>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="7">
+          One special memory
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 7: FIRST PHOTO -->
+<section
+  id="scene-7"
+  class="finale-scene"
+  aria-hidden="true">
+
+  <div class="scene-content">
+    <p class="scene-kicker">A MEMORY TO KEEP</p>
+
+    <h2>Our First Ever Photo</h2>
+
+    <div class="finale-photo-frame">
+      <img
+        id="firstEverPhoto"
+        src="./images/first-ever-photo.jpg"
+        alt="A special first memory"
+        loading="lazy">
+
+      <div class="photo-fallback">
+        <span aria-hidden="true">♡</span>
+        <p>Our first photo belongs here.</p>
+        <p class="photo-fallback-note">
+          Add your photo to the images folder.
+        </p>
+      </div>
+    </div>
+
+    <!-- EXACT MEMORY CHAT -->
+    <div class="photo-memory-chat">
+      <p>“Jaldi jaldi karo 😭”</p>
+      <p>“Ruko koi dekh lega 😭”</p>
+      <p>“Arre click Karo na 😂”</p>
+      <p>“Ho gayi??”</p>
+      <p>“Bhag 😭😂❤️”</p>
+
+      <div class="mission-status">
+        <span>MISSION STATUS</span>
+        <strong>SUCCESSFUL ✅❤️</strong>
+      </div>
+
+      <p class="handwritten-caption">
+        Our very first photo.
+      </p>
+    </div>
+
+    <p class="scene-description">
+      Some memories become precious simply
+      because of the person connected to them.
+    </p>
+
+    <button
+      class="glass-button scene-continue"
+      data-next-scene="8"
+      type="button">
+      Relive This Moment ♡
+    </button>
+  </div>
+</section>
+
+
+    <!-- SCENE 8: GRAND FIREWORKS — 30 SECONDS -->
+    <section
+      id="scene-8"
+      class="finale-scene fireworks-scene"
+      aria-hidden="true">
+
+      <canvas
+        id="fireworksCanvas"
+        class="fireworks-canvas"
+        aria-hidden="true">
+      </canvas>
+
+      <div class="fireworks-content">
+        <p class="scene-kicker">THIS MOMENT IS ALL YOURS</p>
+
+        <div class="fireworks-heading">
+          <span aria-hidden="true">✨</span>
+          <h2>A celebration for you.</h2>
+          <span aria-hidden="true">✨</span>
+        </div>
+
+        <p class="scene-description">
+          Here's to you, Aradhya.
+          May your day be filled with little reasons to smile.
+        </p>
+
+        <div class="fireworks-countdown" aria-live="off">
+          <span aria-hidden="true">🎆</span>
+          <span>30 seconds of celebration</span>
+          <span aria-hidden="true">🎇</span>
+        </div>
+
+        <p class="fireworks-footer">
+          Sit back and enjoy your little sky of wishes.
+        </p>
+      </div>
+
+      <!--
+        The JS must run the fireworks for exactly 30 seconds,
+        then automatically advance to Scene 9.
+        Do not add a manual Continue button to this scene.
+      -->
+    </section>
+
+
+    <!-- SCENE 9: BIRTHDAY WISH -->
+    <section
+      id="scene-9"
+      class="finale-scene birthday-wish-scene"
+      aria-hidden="true">
+
+      <div class="scene-content birthday-wish-content">
+        <p class="scene-kicker">TODAY IS YOURS</p>
+
+        <div class="birthday-crown" aria-hidden="true">👑</div>
+
+        <p class="birthday-prelude">And now, one last wish…</p>
+
+        <h1 class="birthday-wish-title">
+          Happy Birthday,
+          <span>Miss Aradhya</span>
+          <span class="birthday-heart" aria-hidden="true">♡</span>
+        </h1>
+
+        <p class="birthday-wish-message">
+          May your days bring you happiness,
+          your heart find reasons to smile,
+          and your dreams keep giving you something
+          beautiful to look forward to.
+        </p>
+
+        <div class="birthday-decoration" aria-hidden="true">
+          ✦ &nbsp; ♡ &nbsp; ✧
+        </div>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="10">
+          One last message
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 10: WISHES FOR HER -->
+    <section
+      id="scene-10"
+      class="finale-scene"
+      aria-hidden="true">
+
+      <div class="scene-content">
+        <p class="scene-kicker">A FEW WISHES FOR YOU</p>
+
+        <div class="wish-orb" aria-hidden="true">✨</div>
+
+        <h2>May life be gentle with your heart.</h2>
+
+        <div class="birthday-wishes-list">
+          <p>May you always find reasons to smile.</p>
+          <p>May your dreams have room to grow.</p>
+          <p>May you feel appreciated for who you are.</p>
+          <p>May beautiful little moments find you often.</p>
+        </div>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="11">
+          Something from my heart
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 11: HEARTFELT MESSAGE -->
+    <section
+      id="scene-11"
+      class="finale-scene"
+      aria-hidden="true">
+
+      <div class="scene-content">
+        <p class="scene-kicker">A LITTLE SOMETHING FROM ME</p>
+
+        <div class="final-message-symbol" aria-hidden="true">♡</div>
+
+        <h2>You matter more than you know.</h2>
+
+        <p class="final-message">
+          I hope this little world reminds you that
+          someone took the time to make something special
+          just to bring a smile to your face.
+        </p>
+
+        <p class="scene-description">
+          Every little detail was meant to make
+          this birthday feel a little more memorable.
+        </p>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="12">
+          Keep this little wish
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 12: THE GIFT -->
+    <section
+      id="scene-12"
+      class="finale-scene"
+      aria-hidden="true">
+
+      <div class="scene-content">
+        <p class="scene-kicker">A LITTLE GIFT, MADE WITH LOVE</p>
+
+        <div class="gift-reveal-illustration" aria-hidden="true">
+          🎁
+        </div>
+
+        <h2>Not everything precious comes in a box.</h2>
+
+        <p class="scene-description">
+          Sometimes it's a memory.
+          Sometimes it's a few thoughtful words.
+          Sometimes it's simply knowing that someone cares.
+        </p>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="13">
+          Open the final chapter
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 13: THE MOMENT -->
+    <section
+      id="scene-13"
+      class="finale-scene"
+      aria-hidden="true">
+
+      <div class="scene-content">
+        <p class="scene-kicker">BEFORE THE LAST PAGE</p>
+
+        <div class="last-moment-stars" aria-hidden="true">
+          ✧ &nbsp; ♡ &nbsp; ✧
+        </div>
+
+        <h2>Let's keep the beautiful moments.</h2>
+
+        <p class="scene-description">
+          The little conversations, the shared laughter,
+          the memories that make ordinary days special.
+        </p>
+
+        <p class="emotional-highlight">
+          Some things are worth remembering.
+        </p>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="14">
+          One final wish
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 14: FINAL WISH -->
+    <section
+      id="scene-14"
+      class="finale-scene"
+      aria-hidden="true">
+
+      <div class="scene-content">
+        <p class="scene-kicker">MY WISH FOR YOUR NEW CHAPTER</p>
+
+        <div class="final-wish-moon" aria-hidden="true">🌙</div>
+
+        <h2>May this year hold beautiful surprises.</h2>
+
+        <p class="scene-description">
+          New memories, little adventures,
+          peaceful moments, unexpected laughter,
+          and plenty of reasons to feel happy.
+        </p>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="15">
+          The last few words
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 15: FINAL MESSAGE -->
+    <section
+      id="scene-15"
+      class="finale-scene"
+      aria-hidden="true">
+
+      <div class="scene-content final-message-content">
+        <p class="scene-kicker">BEFORE THIS LITTLE WORLD GOES QUIET</p>
+
+        <div class="final-message-heart" aria-hidden="true">💗</div>
+
+        <h2>This is just the beginning…</h2>
+
+        <p class="final-message">
+          Of new memories.
+          Of new chapters.
+          Of all the little moments still waiting to happen.
+        </p>
+
+        <div class="story-ending-lines">
+          <p>OF OUR LIFE.</p>
+          <p>OF OUR LOVE STORY.</p>
+          <p class="story-ending-together">TOGETHER. ♡</p>
+        </div>
+
+        <button
+          type="button"
+          class="glass-button scene-continue"
+          data-next-scene="16">
+          One last thing, Aradhya…
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SCENE 16: FINAL ENDING + REPLAY -->
+    <section
+      id="scene-16"
+      class="finale-scene final-ending-scene"
+      aria-hidden="true">
+
+      <div class="scene-content final-ending-content">
+        <div class="final-ending-glow" aria-hidden="true"></div>
+
+        <div class="final-ending-emblem" aria-hidden="true">
+          ♡
+        </div>
+
+        <p class="scene-kicker">MADE ESPECIALLY FOR YOU</p>
+
+        <h1 class="final-ending-title">
+          Happy Birthday,
+          <span>Miss Aradhya</span>
+        </h1>
+
+        <p class="final-ending-message">
+          I hope you keep this little memory
+          close to your heart.
+        </p>
+
+        <p class="final-ending-signature">
+          I love you so much… Always &amp; Forever. ♡
+        </p>
+
+        <button
+          type="button"
+          id="finalGiftButton"
+          class="glass-button replay-button">
+          <span aria-hidden="true">↻</span>
+          Replay Our Story
+        </button>
+
+        <p class="replay-caption">
+          Whenever you want to begin again.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <noscript>
+    <p class="noscript-message">
+      Please enable JavaScript to experience the Grand Finale.
+    </p>
+  </noscript>
+
+</body>
+</html>

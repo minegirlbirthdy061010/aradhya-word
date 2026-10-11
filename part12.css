@@ -1,0 +1,1654 @@
+/* ==========================================================
+   ARADHYA'S WORLD — PART 12
+   GRAND FINALE — COMPLETE STYLESHEET
+   Responsive • Cinematic • Lightweight
+========================================================== */
+
+/* ------------------------------
+   1. RESET & DESIGN TOKENS
+------------------------------ */
+
+:root {
+  color-scheme: dark;
+
+  --night: #171020;
+  --night-purple: #261634;
+  --pink: #f5b6cf;
+  --pink-light: #ffe2ed;
+  --rose: #d986a8;
+  --lavender: #cbb8f4;
+  --gold: #f1d19a;
+  --gold-bright: #ffe9b9;
+  --cream: #fff5ee;
+  --text: #fff5fa;
+  --text-soft: #e1d0e4;
+  --text-muted: #bba8c6;
+  --border: rgba(255, 255, 255, 0.18);
+  --glass: rgba(255, 255, 255, 0.065);
+  --glass-strong: rgba(255, 255, 255, 0.105);
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.25);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 0;
+  min-height: 100%;
+  scroll-behavior: smooth;
+  background: var(--night);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body.grand-finale {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  overflow-x: hidden;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(126, 68, 124, 0.42),
+      transparent 55%
+    ),
+    linear-gradient(
+      155deg,
+      #201329 0%,
+      #2b1939 46%,
+      #171020 100%
+    );
+  color: var(--text);
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 5px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+img,
+canvas {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p {
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: rgba(245, 182, 207, 0.35);
+  color: #fff;
+}
+
+/* ------------------------------
+   2. BACKGROUND ATMOSPHERE
+------------------------------ */
+
+.finale-background {
+  position: fixed;
+  z-index: -5;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(94, 54, 113, 0.22),
+      transparent 56%
+    );
+}
+
+.background-glow {
+  position: absolute;
+  width: min(76vw, 540px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(55px);
+  opacity: 0.23;
+  will-change: transform;
+}
+
+.glow-one {
+  top: -20%;
+  left: -25%;
+  background: #a45cba;
+  animation: glowDriftOne 17s ease-in-out infinite alternate;
+}
+
+.glow-two {
+  right: -30%;
+  bottom: -15%;
+  background: #c55c8b;
+  animation: glowDriftTwo 20s ease-in-out infinite alternate;
+}
+
+.glow-three {
+  top: 38%;
+  left: 34%;
+  width: min(50vw, 360px);
+  background: #7364c8;
+  opacity: 0.13;
+  animation: glowDriftOne 22s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes glowDriftOne {
+  from {
+    transform: translate3d(0, 0, 0) scale(0.95);
+  }
+  to {
+    transform: translate3d(8%, 9%, 0) scale(1.12);
+  }
+}
+
+@keyframes glowDriftTwo {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  to {
+    transform: translate3d(-9%, -7%, 0) scale(0.92);
+  }
+}
+
+/* ------------------------------
+   3. AMBIENT PARTICLES
+------------------------------ */
+
+#ambientParticles {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient-particle {
+  position: absolute;
+  display: block;
+  color: rgba(255, 224, 240, 0.75);
+  font-size: var(--particle-size, 12px);
+  line-height: 1;
+  opacity: 0;
+  text-shadow: 0 0 12px rgba(255, 194, 224, 0.45);
+  animation:
+    particleFloat var(--particle-duration, 7s)
+    ease-in-out var(--particle-delay, 0s) infinite;
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 15px, 0) scale(0.7);
+  }
+  20% {
+    opacity: 0.65;
+  }
+  75% {
+    opacity: 0.48;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(12px, -65px, 0) scale(1.15);
+  }
+}
+
+/* ------------------------------
+   4. TOP CONTROLS
+------------------------------ */
+
+.music-toggle {
+  position: fixed;
+  z-index: 50;
+  top: calc(14px + var(--safe-top));
+  right: clamp(12px, 3vw, 24px);
+  display: inline-flex;
+  min-height: 40px;
+  max-width: calc(100% - 24px);
+  padding: 8px 14px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(34, 22, 46, 0.68);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease;
+}
+
+.finale-progress {
+  position: fixed;
+  z-index: 51;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.finale-progress-bar {
+  width: 6.25%;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(
+    90deg,
+    #c990d9,
+    #f5b6cf,
+    #f4dfb4
+  );
+  box-shadow: 0 0 14px rgba(245, 182, 207, 0.45);
+  transition: width 450ms var(--ease);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ------------------------------
+   5. MAIN LAYOUT & SCENES
+------------------------------ */
+
+.grand-finale-main {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-width: 0;
+}
+
+.finale-scene {
+  position: relative;
+  display: none;
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding:
+    calc(76px + var(--safe-top))
+    clamp(16px, 5vw, 42px)
+    calc(32px + var(--safe-bottom));
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.finale-scene.is-active {
+  display: flex;
+  animation: sceneFadeIn 650ms var(--ease) both;
+}
+
+.scene-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(100%, 690px);
+  min-width: 0;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+@keyframes sceneFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scene-kicker {
+  max-width: 100%;
+  margin: 0 0 18px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.2em;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.finale-scene h1,
+.finale-scene h2 {
+  max-width: 100%;
+  margin: 0;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  line-height: 1.22;
+  text-align: center;
+}
+
+.finale-scene h1 {
+  font-size: clamp(32px, 7vw, 56px);
+  letter-spacing: -0.035em;
+}
+
+.finale-scene h2 {
+  font-size: clamp(27px, 5.6vw, 43px);
+  letter-spacing: -0.025em;
+}
+
+.scene-description {
+  width: min(100%, 510px);
+  margin: 19px auto 0;
+  color: var(--text-soft);
+  font-size: clamp(15px, 2.2vw, 17px);
+  line-height: 1.85;
+  font-weight: 400;
+}
+
+.emotional-highlight {
+  max-width: 480px;
+  margin: 18px auto 0;
+  color: var(--pink-light);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(16px, 2.6vw, 20px);
+  font-style: italic;
+  line-height: 1.75;
+}
+
+.scene-signature {
+  margin: 20px 0 0;
+  color: var(--gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+.scene-navigation {
+  display: flex;
+  width: 100%;
+  margin-top: 28px;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-button {
+  display: inline-flex;
+  width: auto;
+  max-width: 100%;
+  min-height: 48px;
+  margin: 28px auto 0;
+  padding: 12px 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid rgba(255, 239, 249, 0.4);
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 239, 249, 0.16),
+      rgba(218, 179, 244, 0.1)
+    );
+  color: #fff7fb;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow:
+    0 8px 26px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  overflow-wrap: anywhere;
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    transform 250ms var(--ease);
+}
+
+.scene-continue {
+  flex: 0 0 auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .glass-button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 239, 249, 0.75);
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 239, 249, 0.24),
+        rgba(218, 179, 244, 0.17)
+      );
+    box-shadow:
+      0 13px 30px rgba(0, 0, 0, 0.17),
+      0 0 22px rgba(245, 182, 207, 0.1);
+  }
+
+  .music-toggle:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.42);
+    background: rgba(57, 36, 72, 0.9);
+  }
+}
+
+.glass-button:active,
+.music-toggle:active {
+  transform: scale(0.98);
+}
+
+/* ------------------------------
+   6. SCENE DECORATIONS
+------------------------------ */
+
+.finale-emblem {
+  display: grid;
+  width: clamp(82px, 18vw, 118px);
+  aspect-ratio: 1;
+  margin: 0 auto 25px;
+  place-items: center;
+  border: 1px solid rgba(255, 224, 241, 0.32);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 34% 28%,
+      rgba(255, 230, 243, 0.25),
+      rgba(194, 123, 183, 0.08) 64%
+    );
+  box-shadow:
+    0 0 0 9px rgba(255, 255, 255, 0.018),
+    0 0 42px rgba(240, 157, 208, 0.14),
+    inset 0 0 24px rgba(255, 255, 255, 0.04);
+  color: var(--pink-light);
+  font-size: clamp(44px, 9vw, 68px);
+  animation: emblemFloat 4s ease-in-out infinite;
+}
+
+@keyframes emblemFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.floating-heart {
+  margin: 0 0 20px;
+  font-size: clamp(42px, 9vw, 62px);
+  filter: drop-shadow(0 0 18px rgba(255, 157, 203, 0.3));
+  animation: heartFloat 3.8s ease-in-out infinite;
+}
+
+@keyframes heartFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-7px) rotate(3deg);
+  }
+}
+
+.memory-symbols,
+.story-stars,
+.birthday-decoration,
+.last-moment-stars {
+  display: flex;
+  margin: 22px 0 0;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 5vw, 34px);
+  color: var(--gold);
+  font-size: 27px;
+}
+
+.memory-symbols span:nth-child(2) {
+  color: var(--pink);
+  font-size: 42px;
+  animation: emblemFloat 3s ease-in-out infinite;
+}
+
+.distance-illustration {
+  display: flex;
+  width: min(100%, 330px);
+  min-height: 100px;
+  margin: 0 auto 18px;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 7vw, 38px);
+  font-size: clamp(34px, 8vw, 52px);
+}
+
+.distance-heart {
+  color: var(--pink-light);
+  font-size: clamp(43px, 10vw, 64px);
+  text-shadow: 0 0 22px rgba(245, 182, 207, 0.3);
+  animation: heartFloat 3.4s ease-in-out infinite;
+}
+
+.promise-symbol,
+.gift-reveal-illustration {
+  margin: 0 auto 22px;
+  font-size: clamp(53px, 12vw, 78px);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.18));
+  animation: emblemFloat 4.3s ease-in-out infinite;
+}
+
+.story-stars {
+  margin: 0 auto 23px;
+  font-size: 31px;
+  letter-spacing: 0.18em;
+}
+
+.story-stars span:nth-child(2) {
+  color: var(--pink);
+}
+
+/* ------------------------------
+   7. FIRST PHOTO + MEMORY CHAT
+------------------------------ */
+
+.finale-photo-frame {
+  position: relative;
+  display: grid;
+  width: min(100%, 360px);
+  min-height: 170px;
+  margin: 18px auto 0;
+  padding: 10px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 231, 241, 0.28);
+  border-radius: 19px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 245, 249, 0.1),
+    rgba(255, 255, 255, 0.025)
+  );
+  box-shadow:
+    0 16px 42px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.finale-photo-frame img {
+  display: block;
+  width: 100%;
+  max-height: 38svh;
+  min-height: 150px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.finale-photo-frame img[hidden] {
+  display: none !important;
+}
+
+.photo-fallback {
+  display: none;
+  width: 100%;
+  padding: 24px 15px;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+.photo-fallback span {
+  color: var(--pink);
+  font-size: 42px;
+}
+
+.photo-fallback p {
+  margin: 8px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+}
+
+.photo-fallback .photo-fallback-note {
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.finale-photo-frame.photo-unavailable .photo-fallback {
+  display: block;
+}
+
+.finale-photo-frame.photo-unavailable #firstEverPhoto {
+  display: none;
+}
+
+/* Memory chat — separate from the photo frame */
+
+.photo-memory-chat {
+  width: min(100%, 360px);
+  margin: 14px auto 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 231, 241, 0.2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.075);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  text-align: left;
+}
+
+.photo-memory-chat > p:not(.handwritten-caption) {
+  width: fit-content;
+  max-width: 95%;
+  margin: 5px 0;
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px 12px 12px 4px;
+  background: rgba(255, 240, 247, 0.1);
+  color: var(--text-main);
+  font-size: 13px;
+  line-height: 1.45;
+  animation: memoryChatIn 450ms ease both;
+}
+
+.photo-memory-chat > p:nth-child(2) {
+  animation-delay: 100ms;
+}
+
+.photo-memory-chat > p:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.photo-memory-chat > p:nth-child(4) {
+  animation-delay: 300ms;
+}
+
+.photo-memory-chat > p:nth-child(5) {
+  animation-delay: 400ms;
+}
+
+.mission-status {
+  display: flex;
+  margin-top: 12px;
+  padding: 10px 12px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  border: 1px solid rgba(255, 215, 143, 0.3);
+  border-radius: 11px;
+  background: rgba(255, 215, 143, 0.08);
+}
+
+.mission-status span {
+  color: #e7c992;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.mission-status strong {
+  color: #ffe7ac;
+  font-size: 12px;
+}
+
+.photo-memory-chat .handwritten-caption {
+  margin: 12px 0 0;
+  color: #f3c7d8;
+  font-family: "Segoe Print", "Comic Sans MS", cursive;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+}
+
+@keyframes memoryChatIn {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-height: 760px) {
+  .finale-photo-frame {
+    min-height: 125px;
+    margin-top: 10px;
+  }
+
+  .finale-photo-frame img {
+    min-height: 110px;
+    max-height: 28svh;
+  }
+
+  .photo-memory-chat {
+    margin-top: 8px;
+    padding: 9px 12px;
+  }
+
+  .photo-memory-chat > p:not(.handwritten-caption) {
+    margin: 3px 0;
+    padding: 5px 9px;
+    font-size: 12px;
+  }
+
+  .mission-status {
+    margin-top: 7px;
+    padding: 7px 9px;
+  }
+
+  .photo-memory-chat .handwritten-caption {
+    margin-top: 7px;
+    font-size: 12px;
+  }
+}
+
+/* ------------------------------
+   8. FIREWORKS SCENE
+------------------------------ */
+
+.fireworks-scene {
+  background:
+    radial-gradient(
+      ellipse at 50% 85%,
+      rgba(126, 60, 133, 0.17),
+      transparent 58%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(16, 11, 27, 0.16),
+      rgba(21, 12, 32, 0.08)
+    );
+}
+
+.fireworks-scene.is-active {
+  animation: fireworksSceneReveal 1s ease both;
+}
+
+@keyframes fireworksSceneReveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fireworks-canvas {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.fireworks-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(100%, 720px);
+  min-width: 0;
+  margin: auto;
+  padding: 18px 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  pointer-events: none;
+}
+
+.fireworks-heading {
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 3vw, 20px);
+}
+
+.fireworks-heading h2 {
+  font-size: clamp(27px, 5.7vw, 44px);
+  text-shadow:
+    0 0 25px rgba(255, 205, 234, 0.16),
+    0 3px 18px rgba(0, 0, 0, 0.25);
+}
+
+.fireworks-heading > span {
+  color: var(--gold-bright);
+  font-size: clamp(20px, 4vw, 30px);
+  animation: sparkleTwinkle 2.5s ease-in-out infinite;
+}
+
+.fireworks-countdown {
+  display: flex;
+  max-width: 100%;
+  margin-top: 28px;
+  padding: 12px 17px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: 1px solid rgba(255, 234, 247, 0.23);
+  border-radius: 999px;
+  background: rgba(29, 17, 41, 0.58);
+  color: var(--cream);
+  font-size: 13px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.fireworks-countdown span:first-child,
+.fireworks-countdown span:last-child {
+  font-size: 19px;
+}
+
+.fireworks-footer {
+  max-width: 440px;
+  margin: 16px auto 0;
+  color: rgba(255, 238, 248, 0.85);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(14px, 2.5vw, 17px);
+  font-style: italic;
+  line-height: 1.75;
+}
+
+/* ------------------------------
+   9. BIRTHDAY WISH SCENE
+------------------------------ */
+
+.birthday-wish-scene {
+  background:
+    radial-gradient(
+      ellipse at 50% 35%,
+      rgba(180, 92, 153, 0.17),
+      transparent 58%
+    );
+}
+
+.birthday-wish-content {
+  max-width: 740px;
+}
+
+.birthday-crown {
+  margin: 0 auto 17px;
+  font-size: clamp(43px, 9vw, 64px);
+  filter: drop-shadow(0 0 22px rgba(255, 213, 145, 0.18));
+  animation: crownFloat 3.7s ease-in-out infinite;
+}
+
+@keyframes crownFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(2deg);
+  }
+}
+
+.birthday-prelude {
+  margin: 0 0 13px;
+  color: var(--gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(17px, 3vw, 21px);
+  font-style: italic;
+}
+
+.birthday-wish-title {
+  width: 100%;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 8vw, 61px) !important;
+  font-weight: 500 !important;
+  line-height: 1.18 !important;
+  text-shadow: 0 4px 30px rgba(245, 182, 207, 0.13);
+}
+
+.birthday-wish-title > span:first-of-type {
+  display: block;
+  margin-top: 5px;
+  background: linear-gradient(
+    110deg,
+    #fff4e8 8%,
+    #f8c5dc 42%,
+    #f6dfb1 70%,
+    #fff4e8 92%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.birthday-heart {
+  display: block;
+  margin-top: 10px;
+  color: var(--pink);
+  font-size: 32px;
+  -webkit-text-fill-color: var(--pink);
+  animation: heartFloat 3s ease-in-out infinite;
+}
+
+.birthday-wish-message {
+  max-width: 500px;
+  margin: 22px auto 0;
+  color: var(--text-soft);
+  font-size: clamp(15px, 2.4vw, 17px);
+  line-height: 1.9;
+}
+
+.birthday-decoration {
+  margin-top: 20px;
+  color: var(--gold);
+  font-size: 23px;
+}
+
+/* ------------------------------
+   10. BIRTHDAY WISH LIST
+------------------------------ */
+
+.wish-orb {
+  display: grid;
+  width: 72px;
+  aspect-ratio: 1;
+  margin: 0 auto 21px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 241, 207, 0.2),
+    rgba(195, 130, 205, 0.07)
+  );
+  box-shadow: 0 0 32px rgba(242, 201, 149, 0.1);
+  font-size: 31px;
+  animation: emblemFloat 4s ease-in-out infinite;
+}
+
+.birthday-wishes-list {
+  display: grid;
+  width: min(100%, 510px);
+  margin-top: 16px;
+  gap: 10px;
+}
+
+.birthday-wishes-list p {
+  margin: 0;
+  padding: 12px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.105);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 1.65;
+  text-align: center;
+}
+
+/* ------------------------------
+   11. FINAL MESSAGE SCENE
+------------------------------ */
+
+.final-message-symbol,
+.final-message-heart {
+  margin: 0 auto 20px;
+  color: var(--pink-light);
+  font-size: clamp(48px, 11vw, 74px);
+  filter: drop-shadow(0 0 22px rgba(245, 182, 207, 0.22));
+  animation: heartFloat 3.5s ease-in-out infinite;
+}
+
+.final-message {
+  max-width: 520px;
+  margin: 20px auto 0;
+  color: var(--pink-light);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(18px, 3.2vw, 23px);
+  font-style: italic;
+  line-height: 1.9;
+  text-wrap: balance;
+}
+
+.final-message-content {
+  max-width: 690px;
+}
+
+/* ------------------------------
+   12. STORY ENDING LINES
+------------------------------ */
+
+.story-ending-lines {
+  display: flex;
+  margin-top: 23px;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.story-ending-lines p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: clamp(12px, 2.4vw, 15px);
+  font-weight: 750;
+  letter-spacing: 0.2em;
+  line-height: 1.65;
+}
+
+.story-ending-lines .story-ending-together {
+  margin-top: 7px;
+  color: var(--gold-bright);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(20px, 4.5vw, 30px);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 22px rgba(241, 209, 154, 0.15);
+}
+
+/* ------------------------------
+   13. FINAL ENDING SCREEN
+------------------------------ */
+
+.final-ending-scene {
+  background:
+    radial-gradient(
+      ellipse at 50% 44%,
+      rgba(160, 89, 155, 0.18),
+      transparent 58%
+    );
+}
+
+.final-ending-content {
+  max-width: 720px;
+}
+
+.final-ending-glow {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: min(90vw, 470px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 213, 229, 0.11),
+    rgba(221, 163, 224, 0.055) 45%,
+    transparent 72%
+  );
+  filter: blur(10px);
+  pointer-events: none;
+  animation: finalGlowPulse 4.5s ease-in-out infinite;
+}
+
+@keyframes finalGlowPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    scale: 0.95;
+  }
+  50% {
+    opacity: 1;
+    scale: 1.05;
+  }
+}
+
+.final-ending-emblem {
+  display: grid;
+  width: clamp(82px, 18vw, 116px);
+  aspect-ratio: 1;
+  margin: 0 auto 22px;
+  place-items: center;
+  border: 1px solid rgba(255, 222, 241, 0.3);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      rgba(255, 228, 243, 0.22),
+      rgba(188, 109, 174, 0.07) 70%
+    );
+  box-shadow:
+    0 0 0 9px rgba(255, 255, 255, 0.015),
+    0 0 40px rgba(245, 182, 207, 0.1);
+  color: var(--pink-light);
+  font-size: clamp(42px, 9vw, 63px);
+  animation: emblemFloat 4s ease-in-out infinite;
+}
+
+.final-ending-title {
+  max-width: 620px;
+  font-size: clamp(33px, 7.4vw, 58px) !important;
+  line-height: 1.2 !important;
+}
+
+.final-ending-title span {
+  display: block;
+  margin-top: 7px;
+  background: linear-gradient(
+    110deg,
+    #fff0e8,
+    #f4bad5 43%,
+    #f6dfb4 75%,
+    #fff0e8
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.final-ending-message {
+  max-width: 440px;
+  margin: 21px auto 0;
+  color: var(--text-soft);
+  font-size: clamp(15px, 2.5vw, 17px);
+  line-height: 1.85;
+}
+
+.final-ending-signature {
+  max-width: 100%;
+  margin: 21px auto 0;
+  color: var(--pink-light);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(16px, 3vw, 20px);
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.replay-button {
+  min-width: min(245px, 100%);
+  margin-top: 30px;
+  border-color: rgba(255, 226, 240, 0.43);
+  background:
+    linear-gradient(
+      120deg,
+      rgba(222, 160, 205, 0.21),
+      rgba(241, 209, 154, 0.12)
+    );
+  font-size: 15px;
+}
+
+.replay-button > span {
+  color: var(--gold-bright);
+  font-size: 20px;
+}
+
+.replay-caption {
+  margin: 12px 0 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ------------------------------
+   14. TRANSITION OVERLAY
+------------------------------ */
+
+.scene-transition {
+  position: fixed;
+  z-index: 40;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(110, 65, 123, 0.4),
+      rgba(18, 11, 28, 0.96)
+    );
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 220ms ease,
+    visibility 220ms ease;
+}
+
+.scene-transition.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ------------------------------
+   15. NO-JAVASCRIPT MESSAGE
+------------------------------ */
+
+.noscript-message {
+  position: relative;
+  z-index: 100;
+  max-width: 500px;
+  margin: 24px auto;
+  padding: 18px;
+  color: var(--cream);
+  text-align: center;
+}
+
+/* ------------------------------
+   16. MEDIUM SCREENS
+------------------------------ */
+
+@media (min-width: 700px) {
+  .finale-scene {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
+  .scene-description {
+    max-width: 530px;
+  }
+
+  .birthday-wishes-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .finale-photo-frame {
+    width: min(100%, 390px);
+  }
+}
+
+/* ------------------------------
+   17. SMALL MOBILE SCREENS
+------------------------------ */
+
+@media (max-width: 520px) {
+  body.grand-finale {
+    font-size: 15px;
+  }
+
+  .finale-scene {
+    padding:
+      calc(66px + var(--safe-top))
+      17px
+      calc(24px + var(--safe-bottom));
+  }
+
+  .scene-content {
+    width: 100%;
+  }
+
+  .scene-kicker {
+    margin-bottom: 15px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+
+  .finale-scene h1 {
+    font-size: clamp(31px, 9vw, 43px);
+  }
+
+  .finale-scene h2 {
+    font-size: clamp(26px, 7.2vw, 34px);
+  }
+
+  .scene-description {
+    margin-top: 15px;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .emotional-highlight {
+    margin-top: 14px;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .glass-button {
+    min-height: 46px;
+    margin-top: 22px;
+    padding: 11px 19px;
+    font-size: 13px;
+  }
+
+  .finale-emblem {
+    margin-bottom: 20px;
+  }
+
+  .memory-symbols {
+    margin-top: 17px;
+  }
+
+  .distance-illustration {
+    min-height: 80px;
+    margin-bottom: 12px;
+  }
+
+  .finale-photo-frame {
+    width: min(100%, 330px);
+    margin-top: 17px;
+  }
+
+  .birthday-crown {
+    margin-bottom: 12px;
+  }
+
+  .birthday-prelude {
+    font-size: 17px;
+  }
+
+  .birthday-wish-message {
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.78;
+  }
+
+  .birthday-wishes-list {
+    gap: 8px;
+  }
+
+  .birthday-wishes-list p {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .final-message {
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  .story-ending-lines {
+    gap: 7px;
+  }
+
+  .story-ending-lines p {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+  }
+
+  .story-ending-lines .story-ending-together {
+    font-size: 22px;
+  }
+
+  .final-ending-signature {
+    font-size: 16px;
+  }
+
+  .replay-button {
+    width: min(100%, 245px);
+  }
+
+  .fireworks-content {
+    padding: 12px 0;
+  }
+
+  .fireworks-heading {
+    gap: 7px;
+  }
+
+  .fireworks-heading h2 {
+    font-size: clamp(25px, 6.5vw, 34px);
+  }
+
+  .fireworks-countdown {
+    gap: 7px;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .fireworks-footer {
+    font-size: 14px;
+  }
+}
+
+
+/* ------------------------------
+   18. SHORT MOBILE VIEWPORTS
+------------------------------ */
+
+@media (max-height: 720px) and (max-width: 520px) {
+  .finale-scene {
+    padding-top: calc(60px + var(--safe-top));
+    padding-bottom: calc(17px + var(--safe-bottom));
+  }
+
+  .scene-kicker {
+    margin-bottom: 10px;
+  }
+
+  .finale-emblem {
+    width: 70px;
+    margin-bottom: 15px;
+    font-size: 42px;
+  }
+
+  .floating-heart {
+    margin-bottom: 12px;
+    font-size: 42px;
+  }
+
+  .scene-description {
+    margin-top: 12px;
+    line-height: 1.65;
+  }
+
+  .emotional-highlight {
+    margin-top: 10px;
+  }
+
+  .glass-button {
+    margin-top: 17px;
+  }
+
+  .birthday-crown {
+    font-size: 42px;
+    margin-bottom: 8px;
+  }
+
+  .birthday-prelude {
+    margin-bottom: 8px;
+  }
+
+  .birthday-heart {
+    margin-top: 5px;
+    font-size: 26px;
+  }
+
+  .birthday-wish-message {
+    margin-top: 12px;
+    line-height: 1.65;
+  }
+
+  .birthday-decoration {
+    margin-top: 10px;
+  }
+
+  .finale-photo-frame {
+    min-height: 125px;
+    max-height: 33svh;
+    margin-top: 12px;
+  }
+
+  .finale-photo-frame img {
+    min-height: 110px;
+    max-height: calc(33svh - 20px);
+  }
+
+  .final-message-symbol,
+  .final-message-heart {
+    margin-bottom: 12px;
+    font-size: 48px;
+  }
+
+  .story-ending-lines {
+    margin-top: 15px;
+  }
+
+  .final-ending-emblem {
+    width: 70px;
+    margin-bottom: 14px;
+    font-size: 42px;
+  }
+
+  .final-ending-message,
+  .final-ending-signature {
+    margin-top: 13px;
+  }
+
+  .replay-button {
+    margin-top: 19px;
+  }
+
+  .fireworks-countdown {
+    margin-top: 18px;
+  }
+
+  .fireworks-footer {
+    margin-top: 11px;
+  }
+}
+
+/* ------------------------------
+   19. EXTRA NARROW DEVICES
+------------------------------ */
+
+@media (max-width: 350px) {
+  .finale-scene {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .music-toggle {
+    right: 10px;
+    min-height: 36px;
+    padding: 7px 11px;
+    font-size: 11px;
+  }
+
+  .finale-scene h1 {
+    font-size: 29px;
+  }
+
+  .finale-scene h2 {
+    font-size: 25px;
+  }
+
+  .scene-description {
+    font-size: 14px;
+  }
+
+  .glass-button {
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+
+  .fireworks-heading h2 {
+    font-size: 24px;
+  }
+
+  .birthday-wish-title {
+    font-size: 31px !important;
+  }
+
+  .final-ending-title {
+    font-size: 31px !important;
+  }
+
+  .story-ending-lines p {
+    letter-spacing: 0.11em;
+  }
+}
+
+/* ------------------------------
+   20. REDUCED MOTION
+------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------------
+   END OF PART 12 CSS
+------------------------------ */
+/* FIX: First photo visible above background layers */
+#scene-7 .scene-content {
+  position: relative;
+  isolation: isolate;
+}
+
+#scene-7 .finale-photo-frame {
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
+  overflow: hidden;
+  background: rgba(255, 245, 249, 0.12);
+}
+
+#scene-7 #firstEverPhoto {
+  position: relative;
+  z-index: 3;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 38svh;
+  min-height: 0;
+  object-fit: contain;
+  opacity: 1;
+  visibility: visible;
+}
+
+#scene-7 #firstEverPhoto[hidden] {
+  display: none !important;
+}
+
+#scene-7 .photo-fallback {
+  position: relative;
+  z-index: 4;
+}
